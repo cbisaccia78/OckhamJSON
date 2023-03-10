@@ -25,9 +25,9 @@ typedef enum {
 
 typedef enum { OBJECT, ARRAY, NUMBER, STRING, TRUE, FALSE, NULLY } ValueType;
 
-unsigned int DECIMALPOINT = 0x2E;
-unsigned int PLUS = 0x2B;
-unsigned int MINUS = 0x2D;
+char DECIMALPOINT = 0x2E;
+char PLUS = 0x2B;
+char MINUS = 0x2D;
 
 typedef enum {
     ZERO = 0x30,
@@ -42,11 +42,11 @@ typedef enum {
     NINE = 0x39
 } DIGIT;
 
-unsigned int QUOTATIONMARK = 0x22;
-unsigned int REVERSESOLIDUS = 0x5C;
+char QUOTATIONMARK = 0x22;
+char REVERSESOLIDUS = 0x5C;
 const struct {
-    unsigned int start;
-    unsigned int endl;
+    int start;
+    int endl;
 } CTRLCHARRANGE = {0x0, 0x1F};
 typedef struct CTRLCHARRANGE CTRLCHARRANGE;
 
@@ -82,7 +82,7 @@ int parse(char *json){
         Strip all leading ws
 
         Grab first token (t)
-        
+
         t is ?
             [
             {
