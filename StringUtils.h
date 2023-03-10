@@ -34,5 +34,16 @@ int getLine(char buffer[], int limit){
     buffer[i] = '\0';
 }
 
+/*
+    UNTESTED
+*/
+int getAll(char buffer[], int limit){
+    int c, i = 0;
+    while((c = getchar()) != EOF){
+        buffer[i++] = c;
+    }
+    buffer[i] = '\0';
+}
+
 
 #endif
