@@ -48,7 +48,6 @@ const struct {
     int start;
     int endl;
 } CTRLCHARRANGE = {0x0, 0x1F};
-typedef struct CTRLCHARRANGE CTRLCHARRANGE;
 
 struct JSONValue {
     ValueType t;
@@ -122,6 +121,7 @@ int parse(char *json){
                     
         }
     */
+   printf("%s\n", json);
 }
 
 /*
