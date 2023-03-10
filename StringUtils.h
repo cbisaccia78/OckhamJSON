@@ -2,6 +2,7 @@
 #define StringUtils_h
 
 #include <string.h>
+#include <stdio.h>
 
 /*
     UNTESTED
@@ -21,5 +22,17 @@ int squeeze(char str[], int startIndex, char removalChar, char controlChar){
     str[j] = '\0';
     return i - j - startIndex;
 }
+
+/*
+    UNTESTED
+*/
+int getLine(char buffer[], int limit){
+    int c, i = 0;
+    while((c = getchar()) != EOF && c != '\n'){
+        buffer[i++] = c;
+    }
+    buffer[i] = '\0';
+}
+
 
 #endif
