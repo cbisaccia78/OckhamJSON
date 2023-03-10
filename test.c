@@ -14,5 +14,6 @@ int main(int argc, char **argv){
     int c, i = 0;
     char buffer[LINELIMIT];
     getLine(buffer, LINELIMIT);
+    squeezeWhiteSpace(buffer, 0, QUOTATIONMARK);
     parse(buffer);
 }

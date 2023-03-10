@@ -3,19 +3,19 @@
 
 #include <string.h>
 #include <stdio.h>
+#include "JSON.h"
 
 /*
     UNTESTED
 */
-int squeeze(char str[], int startIndex, char removalChar, char controlChar){
+int squeezeWhiteSpace(char str[], int startIndex, char controlChar){
     if(startIndex < 0 || startIndex > strlen(str))
         return -1;
-
     char c;
     int i,j;
     i = j = startIndex;
     while((c = str[startIndex++]) != '\0' && c != controlChar){
-        if(c != removalChar)
+        if(c != SPACE && c != TAB && c != NEWLINE && c != CARRIAGE_RETURN)
             str[j++] = c;
 
     }
