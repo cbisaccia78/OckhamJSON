@@ -3,8 +3,8 @@ ________________________________________________________________________________
 
 # Purpose: 
 
-    A library in C for non-json experts to control the serialization/de-serialization process
-    of JSON text data
+    **C library** for non-json experts to control the **serialization/de-serialization** process
+    of **JSON** text data
             
     I want to provide clear control mechanisms for users of the library to be able to define what kind 
     of data they expect to see, and also storage mechanisms for where they want the parsed Text to be 
