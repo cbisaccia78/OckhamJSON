@@ -2,22 +2,13 @@ ________________________________________________________________________________
 # Ockham JSON
 
 # Purpose: 
-    I was looking to work with some JSON text streams in C. 
 
-    However, I couldn't find a JSON library in C that was palletable at a first glance.
-
-    I started to build one myself with the goal of abstracting away the nuances of JSON structure
-    from the concerns of the user. 
-    
-    Therefore I wrote this libary with the following goals in mind:
-    
-        1. An easy way for users of the library to control the serialization/de-serialization process JSON text data
+    A library in C for non-json experts to control the serialization/de-serialization process of JSON text data
             
-            I want to provide clear control mechanisms for users of the library to be able to define what kind 
-            of data they expect to see, and also storage mechanisms for where they want the parsed Text to be 
-            routed to. 
+    I want to provide clear control mechanisms for users of the library to be able to define what kind 
+    of data they expect to see, and also storage mechanisms for where they want the parsed Text to be 
+    routed to. 
             
-
 # Usage:
     
     /*
@@ -69,9 +60,6 @@ ________________________________________________________________________________
     deserializeFromTemplate(char *jsonText, Template t, Storage s);
             
         
-    
-
-
 # A Brief Introduction to JSON (From [RFC-8259](https://www.rfc-editor.org/rfc/rfc8259)):
     
     JavaScript Object Notation (JSON) is a text format for the
@@ -102,3 +90,12 @@ ________________________________________________________________________________
     Future Changes:
         ECMA and IETF will work together to reconcile any differences between
         RFC8259 and [ECMA-404]. 
+
+# History
+
+    I was looking to work with some JSON text streams in C. 
+
+    However, I couldn't find a JSON library in C that was palletable at a first glance.
+
+    I started to build one myself with the goal of abstracting away the nuances of JSON structure
+    from the concerns of the user. 
