@@ -25,7 +25,7 @@ typedef enum {
     CARRIAGE_RETURN = 0x0D
 } WhiteSpace; 
 
-typedef enum { OBJECT, ARRAY, NUMBER, STRING, TRUE, FALSE, NULLY } ValueType;
+typedef enum { OBJECT, ARRAY, NUMBER, STRING, TRUE, FALSE, NULLY, INVALID } ValueType;
 
 char DECIMALPOINT = 0x2E;
 char PLUS = 0x2B;
