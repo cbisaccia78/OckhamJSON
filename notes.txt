@@ -1,0 +1,109 @@
+JSON grammar rules
+    ws value ws 
+
+Data Structures
+
+    struct nAryTreeNode {
+        char *jsonText;
+        bool valid;
+        char *keyName;
+        char *value; // should not be set until leaf node
+        struct nAryTreeNode *children; 
+    }
+
+    struct Object {
+        DynamicType t;
+
+    }
+
+Functions
+
+//string functions
+
+int stripTrailingLeadingWS(char *str)
+    do it
+    return integer offset from beginning of str*
+
+//node validation functions
+
+int nodeIsLeaf()
+
+//node modification functions
+
+int createRootValue(nAryTreeNode *root, char *rootJsonText){
+    root->jsonText = rootJsonText;
+    root->valid = false;
+    root->keyName = null;
+    root->value = null;
+    root->children = null;
+}
+
+
+int parseKeyOffset(nAryTreeNode){
+    nAryTreeNode->jsonText = (nAryTreeNode->jsonText + stripTrailingLeadingWS(nAryTreeNode->jsonText)) // pointer arithmetic
+}
+
+int parseKey(nAryTreeNode){
+    do parse key
+    nAryTreeNode->key = key;
+}
+
+
+int parse(nAryTreeNode root){
+    if(nodeIsLeaf(root)){
+        parseKeyOffSet(root);
+        if(root.isValid){
+            parseKey(root);
+            if(root.isValid){
+                parseValueOffset(root);
+                if(root.isValid){
+                    parseValue(root);
+                }
+            }
+        }
+        return something
+    }
+    
+    parse(root)
+        
+    createRootValue(rootJSONValue, rootJSONText);
+    nodeIsLeaf(rootJSONValue)
+        parseKeyOffset(rootJSONValue)
+        parseKey(rootJSONValue)
+    parse(rootJSONValue); // recursive
+    for(child in nAryTreeNode.children)
+        return parse(child)
+}
+
+int parseObjectFromJSONText(char *rootJSONText, Object *o){
+    //Create root node
+    nAryTreeNode rootJSONValue;
+    createRootValue(rootJSONValue, rootJSONText);
+    parse(rootJSONValue)
+    if(rootJSONValue.valid){
+        parseObject(rootJSONValue, o);
+        o.successful?
+            return 1
+    }
+    return 0
+}
+
+
+JSON cases from simplest to most complicated
+    
+    "ws" - invalid, must contain at least one object
+
+    "\"\"" - empty string
+
+
+Invalid JSON cases
+
+    Unmatched structural character
+    invalid string format
+    invalid number format
+    invalid array format
+    invalid object format
+    invalid true format
+    invalid false format 
+    invalid null format
+    
