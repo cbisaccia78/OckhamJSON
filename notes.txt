@@ -48,7 +48,7 @@ int parseKey(nAryTreeNode){
 }
 
 
-int parse(nAryTreeNode root){
+bool parse(nAryTreeNode root){
     if(nodeIsLeaf(root)){
         parseKeyOffSet(root);
         if(root.isValid){
@@ -57,21 +57,17 @@ int parse(nAryTreeNode root){
                 parseValueOffset(root);
                 if(root.isValid){
                     parseValue(root);
+                    return root.isValid;
                 }
             }
         }
-        return something
+        return false;
     }
-    
-    parse(root)
-        
-    createRootValue(rootJSONValue, rootJSONText);
-    nodeIsLeaf(rootJSONValue)
-        parseKeyOffset(rootJSONValue)
-        parseKey(rootJSONValue)
-    parse(rootJSONValue); // recursive
-    for(child in nAryTreeNode.children)
-        return parse(child)
+    bool validChildren = true;
+    for(child in root.children){
+        validChildren = validChildren && parse(child)
+    }
+    return validChildren;
 }
 
 void _deserializeFromTemplate(nAryTreeNode root, Template t, Storage *s){
@@ -85,9 +81,9 @@ void deserializeFromTemplate(char *jsonText, Template t, Storage *s){
     createRootValue(rootJSONValue, jsonText);
 
     //Parse JSON text using the help of the tree nodes
-    parse(rootJSONValue);
+    bool parsedSuccessfully = parse(rootJSONValue);
 
-    if(rootJSONValue.valid){
+    if(parsedSuccessfully){
         _deserializeFromTemplate(rootJSONValue, t, s);
     }
 }
