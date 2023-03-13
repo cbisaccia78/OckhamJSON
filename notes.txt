@@ -11,8 +11,7 @@ Data Structures
         struct nAryTreeNode *children; 
     }
 
-    struct Object {
-        DynamicType t;
+    struct DeSerializationTemplate {
 
     }
 
@@ -75,7 +74,7 @@ int parse(nAryTreeNode root){
         return parse(child)
 }
 
-int parseObjectFromJSONText(char *rootJSONText, Object *o){
+int parseTemplateFromJSONText(char *rootJSONText, DeSerializationTemplate *t){
     //Create root node
     nAryTreeNode rootJSONValue;
     createRootValue(rootJSONValue, rootJSONText);
