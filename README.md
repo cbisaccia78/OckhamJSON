@@ -7,33 +7,49 @@ ________________________________________________________________________________
 # Usage:
     
     /*
-        Create a custom (Template) for your particular use case:
+        First: 
 
-        (Templates) are C structs which contain the expected structure of 
-        your incoming JSON data.
+            Create a custom (Template) for your particular use case:
 
-        Structure it like this:
-    */
-    Template myCustomTemplate = { . . . };
+            (Templates) are C structs which contain the expected structure of 
+            your incoming JSON data.
 
-    /*
-        Create custom (Storage) which implements your template
+            Structure it like this:
+
+                struct Template {
+
+                };
+                typedef struct Template Template;
         
-        (Storage) will be a struct that contains your JSON text data in the way 
-        you need it to. 
+        Second: 
+            Create custom (Storage) which implements your template
+        
+            (Storage) will be a struct that contains your JSON text data in the way 
+            you need it to. 
+
+            Structure it like this:
+
+                struct Storage {
+
+                };
+                typedef struct Storage Storage;
+        
+        Third:
+            Call the following function:
+
+                int deserializeFromTemplate(char *jsonText, Template t, Storage s);
+
+            This function attempts to populate the Storage struct with parsed JSON text data
+            in the manner specified by the Template. 
+
+            It will return 0 on failure and 1 on success.
+
     */
+
+    //Actual example: 
+
+    Template myCustomTemplate = { . . . };
     Storage myCustomStorage = { . . . };
-    
-    /*
-        parses through json text
-
-        if jsonText looks like Template t:
-            populate storage with jsonText
-            return 1
-        else
-            return 0
-
-    */
     deserializeFromTemplate(char *jsonText, Template t, Storage s);
             
         
