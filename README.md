@@ -1,7 +1,10 @@
-# OckhamJSON
-An implementation of RFC8259 JSON in C
+____________________________________________________________________________
+# NAME: OckhamJSON
+# PURPOSE: A C Libary for the Serialization/De-Serialization of JSON text data
+Adhere's to RFC8259 as the authority for defining JSON text data. 
+____________________________________________________________________________
 
-INTRODUCTION (From RFC8259):
+# INTRODUCTION (From RFC8259):
 
    JavaScript Object Notation (JSON) is a text format for the
    serialization of structured data.  It is derived from the object
