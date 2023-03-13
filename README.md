@@ -2,8 +2,21 @@ ________________________________________________________________________________
 # Ockham JSON
 
 # Purpose: 
-    C Libary providing the following functionality: 
-        - User controlled serialization/de-serialization of JSON text data
+    I was looking to work with some JSON text streams in C. 
+
+    However, I couldn't find a JSON library in C that was palletable at a first glance.
+
+    I started to build one myself with the goal of abstracting away the nuances of JSON structure
+    from the concerns of the user. 
+    
+    Therefore I wrote this libary with the following goals in mind:
+    
+        1. An easy way for users of the library to control the serialization/de-serialization process JSON text data
+            
+            I want to provide clear control mechanisms for users of the library to be able to define what kind 
+            of data they expect to see, and also storage mechanisms for where they want the parsed Text to be 
+            routed to. 
+            
 
 # Usage:
     
