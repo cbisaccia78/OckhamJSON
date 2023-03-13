@@ -1,6 +1,8 @@
 #ifndef JSON_h
 #define JSON_h
 
+#include <stdio.h>
+
 typedef enum { 
     BEGIN_ARRAY = 0x5B,
     BEGIN_OBJECT = 0x7B,
