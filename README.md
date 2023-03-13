@@ -22,6 +22,7 @@ ________________________________________________________________________________
                 typedef struct Template Template;
         
         Second: 
+            
             Create custom (Storage) which implements your template
         
             (Storage) will be a struct that contains your JSON text data in the way 
@@ -35,6 +36,7 @@ ________________________________________________________________________________
                 typedef struct Storage Storage;
         
         Third:
+            
             Call the following function:
 
                 int deserializeFromTemplate(char *jsonText, Template t, Storage s);
@@ -57,6 +59,7 @@ ________________________________________________________________________________
 
 
 # A Brief Introduction to JSON (From [RFC-8259](https://www.rfc-editor.org/rfc/rfc8259)):
+    
     JavaScript Object Notation (JSON) is a text format for the
     serialization of structured data.  It is derived from the object
     literals of JavaScript, as defined in the ECMAScript Programming
