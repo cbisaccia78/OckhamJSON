@@ -74,10 +74,10 @@ int parse(nAryTreeNode root){
         return parse(child)
 }
 
-int parseTemplateFromJSONText(char *rootJSONText, DeSerializationTemplate *t){
+int deserializeFromTemplate(char *jsonText, Template t, Storage s){
     //Create root node
     nAryTreeNode rootJSONValue;
-    createRootValue(rootJSONValue, rootJSONText);
+    createRootValue(rootJSONValue, jsonText);
     parse(rootJSONValue)
     if(rootJSONValue.valid){
         parseObject(rootJSONValue, o);
