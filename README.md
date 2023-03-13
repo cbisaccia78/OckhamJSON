@@ -1,12 +1,10 @@
 _________________________________________________________________________________________
-# Name: OckhamJSON
-# Language: C
-# Purpose: A C Libary for the Serialization/De-Serialization of JSON text data
-# GENERAL OVERVIEW
-    Adhere's to [RFC-8259](https://www.rfc-editor.org/rfc/rfc8259) as the authority for 
-    valid JSON Syntax
-# A Brief Introduction to JSON (From RFC8259):
+# Ockham JSON
 
+# Purpose: 
+    A C Libary for the Serialization/De-Serialization of JSON text data
+
+# A Brief Introduction to JSON (From [RFC-8259](https://www.rfc-editor.org/rfc/rfc8259)):
     JavaScript Object Notation (JSON) is a text format for the
     serialization of structured data.  It is derived from the object
     literals of JavaScript, as defined in the ECMAScript Programming
@@ -37,4 +35,3 @@ ________________________________________________________________________________
         RFC8259 and [ECMA-404]. 
 
 # Usage
-    
