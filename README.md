@@ -4,6 +4,43 @@ ________________________________________________________________________________
 # Purpose: 
     A C Libary for the Serialization/De-Serialization of JSON text data
 
+# Usage:
+    /*
+        /*
+            Create a custom (Template) for your particular use case:
+
+            (Templates) are C structs which contain the expected structure of 
+            your incoming JSON data.
+
+            Structure it like this:
+        */
+        Template myCustomTemplate = { . . . };
+
+        /*
+            Create a custom storage structure (Storage) which implements your template
+            
+            (Storage) will be a struct that contains your JSON text data in the way 
+            you need it to. 
+        */
+        Storage myCustomStorage = { . . . };
+        
+        /*
+            parses through json text
+
+            if jsonText looks like Template t:
+                populate storage with jsonText
+                return 1
+            else
+                return 0
+
+        */
+        deserializeFromTemplate(char *jsonText, Template t, Storage s);
+            
+        
+    */
+    
+
+
 # A Brief Introduction to JSON (From [RFC-8259](https://www.rfc-editor.org/rfc/rfc8259)):
     JavaScript Object Notation (JSON) is a text format for the
     serialization of structured data.  It is derived from the object
@@ -33,5 +70,3 @@ ________________________________________________________________________________
     Future Changes:
         ECMA and IETF will work together to reconcile any differences between
         RFC8259 and [ECMA-404]. 
-
-# Usage
