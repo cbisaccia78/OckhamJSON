@@ -45,12 +45,12 @@ ________________________________________________________________________________
             
             Call the following function:
 
-                int deserializeFromTemplate(char *jsonText, Template t, Storage s);
+                void deserializeFromTemplate(char *jsonText, Template t, Storage s);
 
             This function attempts to populate the Storage struct with parsed JSON text data
             in the manner specified by the Template. 
 
-            It will return 0 on failure and 1 on success.
+            It will store error codes / meta info within the Storage struct
 
     */
 
