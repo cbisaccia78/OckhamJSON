@@ -5,39 +5,38 @@ ________________________________________________________________________________
     A C Libary for the Serialization/De-Serialization of JSON text data
 
 # Usage:
+    
     /*
-        /*
-            Create a custom (Template) for your particular use case:
+        Create a custom (Template) for your particular use case:
 
-            (Templates) are C structs which contain the expected structure of 
-            your incoming JSON data.
+        (Templates) are C structs which contain the expected structure of 
+        your incoming JSON data.
 
-            Structure it like this:
-        */
-        Template myCustomTemplate = { . . . };
-
-        /*
-            Create a custom storage structure (Storage) which implements your template
-            
-            (Storage) will be a struct that contains your JSON text data in the way 
-            you need it to. 
-        */
-        Storage myCustomStorage = { . . . };
-        
-        /*
-            parses through json text
-
-            if jsonText looks like Template t:
-                populate storage with jsonText
-                return 1
-            else
-                return 0
-
-        */
-        deserializeFromTemplate(char *jsonText, Template t, Storage s);
-            
-        
+        Structure it like this:
     */
+    Template myCustomTemplate = { . . . };
+
+    /*
+        Create custom (Storage) which implements your template
+        
+        (Storage) will be a struct that contains your JSON text data in the way 
+        you need it to. 
+    */
+    Storage myCustomStorage = { . . . };
+    
+    /*
+        parses through json text
+
+        if jsonText looks like Template t:
+            populate storage with jsonText
+            return 1
+        else
+            return 0
+
+    */
+    deserializeFromTemplate(char *jsonText, Template t, Storage s);
+            
+        
     
 
 
