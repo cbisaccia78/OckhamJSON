@@ -74,7 +74,7 @@ int parse(nAryTreeNode root){
         return parse(child)
 }
 
-int _deserializeFromTemplate(nAryTreeNode root, Template t, Storage *s){
+void _deserializeFromTemplate(nAryTreeNode root, Template t, Storage *s){
 
 }
 
