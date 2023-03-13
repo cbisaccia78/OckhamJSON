@@ -3,7 +3,7 @@ ________________________________________________________________________________
 
 # Purpose: 
 
-    **C library** for non-json experts to control the **serialization/de-serialization** process
+    **C library** for non-json experts to control the **serialization**/**deserialization** process
     of **JSON** text data
             
     I want to provide clear control mechanisms for users of the library to be able to define what kind 
