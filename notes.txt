@@ -5,15 +5,27 @@ Data Structures
 
     struct nAryTreeNode {
         char *jsonText;
-        bool valid;
         char *keyName;
         char *value; // should not be set until leaf node
+        ValueType valueType;
+        bool validSoFar;
         struct nAryTreeNode *children; 
     }
+    typedef struct nAryTreeNode;
 
     struct DeSerializationTemplate {
+        char *key;
+        ValueType valueType;
+        struct DeSerializationTemplate *children;
+    }
+    typedef struct DeSerializationTemplate {
 
     }
+
+    struct Storage {
+
+    };
+    typedef struct Storage Storage;
 
 Functions
 
@@ -31,41 +43,54 @@ int nodeIsLeaf()
 
 int createRootValue(nAryTreeNode *root, char *rootJsonText){
     root->jsonText = rootJsonText;
-    root->valid = false;
+    root->validSoFar = false;
     root->keyName = null;
     root->value = null;
+    root->valueType = INVALID;
     root->children = null;
 }
 
 
-int parseKeyOffset(nAryTreeNode){
-    nAryTreeNode->jsonText = (nAryTreeNode->jsonText + stripTrailingLeadingWS(nAryTreeNode->jsonText)) // pointer arithmetic
+int parseKeyOffset(nAryTreeNode *node){
+    node->jsonText = (node->jsonText + stripTrailingLeadingWS(nAryTreeNode->jsonText)) // pointer arithmetic
 }
 
-int parseKey(nAryTreeNode){
+int parseKey(nAryTreeNode *node){
     do parse key
     nAryTreeNode->key = key;
 }
 
+int parseValueOffset(nAryTreeNode *node){
 
-bool parse(nAryTreeNode root){
+}
+
+int parseValue(nAryTreeNode *node){
+    do parse value
+}
+
+
+bool parse(nAryTreeNode *root, Template t){
     if(nodeIsLeaf(root)){
-        parseKeyOffSet(root);
-        if(root.isValid){
+        parseKeyOffset(root);
+        if(root->validSoFar){
             parseKey(root);
-            if(root.isValid){
-                parseValueOffset(root);
-                if(root.isValid){
-                    parseValue(root);
-                    return root.isValid;
+            if(root->validSoFar){
+                if(root->key == t.key){
+                    parseValueOffset(root);
+                    if(root->validSoFar){
+                        parseValue(root);
+                        if(root->valueType != INVALID && root->valueType == t.valueType)
+                            return root.isValid;
+                    }
                 }
+                
             }
         }
         return false;
     }
     bool validChildren = true;
     for(child in root.children){
-        validChildren = validChildren && parse(child)
+        validChildren = validChildren && parse(child, t)
     }
     return validChildren;
 }
@@ -77,11 +102,11 @@ void _deserializeFromTemplate(nAryTreeNode root, Template t, Storage *s){
 
 void deserializeFromTemplate(char *jsonText, Template t, Storage *s){
     //Create root node to represent top level JSON value
-    nAryTreeNode rootJSONValue;
+    nAryTreeNode *rootJSONValue;
     createRootValue(rootJSONValue, jsonText);
 
     //Parse JSON text using the help of the tree nodes
-    bool parsedSuccessfully = parse(rootJSONValue);
+    bool parsedSuccessfully = parse(rootJSONValue, t);
 
     if(parsedSuccessfully){
         _deserializeFromTemplate(rootJSONValue, t, s);
