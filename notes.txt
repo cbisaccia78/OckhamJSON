@@ -16,11 +16,9 @@ Data Structures
     struct DeSerializationTemplate {
         char *key;
         ValueType valueType;
-        struct DeSerializationTemplate *children;
+        struct DeSerializationTemplate *children; //cannot guarantee order
     }
-    typedef struct DeSerializationTemplate {
-
-    }
+    typedef struct DeSerializationTemplate;
 
     struct Storage {
 
@@ -89,8 +87,10 @@ bool parse(nAryTreeNode *root, Template t){
         return false;
     }
     bool validChildren = true;
-    for(child in root.children){
-        validChildren = validChildren && parse(child, t)
+    for(child in root->children){
+        if(children->key not in t->children)
+            return false
+        validChildren = validChildren && parse(child, t.children[children->key]) 
     }
     return validChildren;
 }
