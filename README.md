@@ -2,7 +2,8 @@ ________________________________________________________________________________
 # Ockham JSON
 
 # Purpose: 
-    A C Libary for the Serialization/De-Serialization of JSON text data
+    C Libary providing the following functionality: 
+        - User controlled serialization/de-serialization of JSON text data
 
 # Usage:
     
