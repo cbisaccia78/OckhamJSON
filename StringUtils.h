@@ -16,28 +16,67 @@ typedef enum {
     CARRIAGE_RETURN = 0x0D
 } WhiteSpace; 
 
-int squeezeWhiteSpace(char str[], int startIndex, char controlChar){
-    if(startIndex < 0 || startIndex > strlen(str))
-        return -1;
+/*
+    TESTED
+        SPACESPACETABTABSPACESPACEhello\n -> 6 hello
+*/
+int stripLeadingWhiteSpace(char str[]){
+    
     char c;
-    int i,j;
-    i = j = startIndex;
+    int i = 0;
 
-    while((c = str[startIndex++]) != '\0' && c != controlChar){
-        if(c != SPACE && c != TAB && c != NEWLINE && c != CARRIAGE_RETURN)
-            str[j++] = c;
+    while((c = str[i++]) != '\0'){
+        if(!(c == SPACE || c == TAB || c == NEWLINE || c == CARRIAGE_RETURN))
+            break;
 
     }
-    str[j] = '\0';
-    return i - j - startIndex;
+    return i-1; //number of ws removed
 }
 
-int stripLeadingWS(char str[]){
-    int i,j;
+/*
+    UNTESTED
+*/
+int stripUntilControlCharacter(char str[], char controlCharacter){
+    char c;
+    int i = 0;
+    while((c = str[i++]) != '\0' && c != controlCharacter)
+        ;
+    
+    if(c != controlCharacter)
+        return -1;
+    return i-1; //number of ws removed
+}
+
+/*
+    TESTED
+        SPACESPACETABTABSPACESPACE"hello" expected 6 result 6
+        SPACESPACETABTABSPACESPACEhello" expected 6 result 6
+        SPACESPACETABTABSPACESPACEhello expected -1 result -1
+*/
+
+int stripWSUntilControlCharacter(char str[], char controlCharacter){
+    char c;
+    int i, j;
     i = j = 0;
-
-    return j;
+    int encounteredNonWS = 0;
+    while((c = str[i++]) != '\0' && c != controlCharacter){
+         if(!(c == SPACE || c == TAB || c == NEWLINE || c == CARRIAGE_RETURN)){
+            encounteredNonWS = 1;
+        }else if(!encounteredNonWS){
+            j++;
+        }
+    }
+    
+    if(c != controlCharacter)
+        return -1;
+    
+    
+    return j; //number of ws removed
 }
+
+/*
+    UNTESTED
+*/
 
 int stripValue(char str[]){
     int i,j;
@@ -47,9 +86,10 @@ int stripValue(char str[]){
 }
 
 /*
-    UNTESTED
+    Tested
+        SPACESPACETABSPACESPACE"hello"\n
 */
-int getLine(char buffer[], int limit){
+void getLine(char buffer[], int limit){
     int c, i = 0;
     while((c = getchar()) != EOF && c != '\n'){
         buffer[i++] = c;
@@ -58,11 +98,12 @@ int getLine(char buffer[], int limit){
 }
 
 /*
-    UNTESTED
+    TESTED
+        { "test" : "test" }
 */
-int getAll(char buffer[], int limit){
+void getAll(char buffer[], int limit){
     int c, i = 0;
-    while((c = getchar()) != EOF){
+    while((c = getchar()) != '|'){
         buffer[i++] = c;
     }
     buffer[i] = '\0';
