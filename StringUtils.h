@@ -23,11 +23,18 @@ int squeezeWhiteSpace(char str[], int startIndex, char controlChar){
     return i - j - startIndex;
 }
 
-int stringLeadingTrailingWS(char str[]){
+int stripLeadingWS(char str[]){
     int i,j;
     i = j = 0;
-    
+
     return j;
+}
+
+int stripValue(char str[]){
+    int i,j;
+    i = j = 0;
+
+    return j; 
 }
 
 /*

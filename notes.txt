@@ -29,9 +29,10 @@ Functions
 
 //string functions
 
-int stripTrailingLeadingWS(char *str)
+int stripLeadingWS(char *str)
     do it
     return integer offset from beginning of str*
+
 
 //node validation functions
 
@@ -59,7 +60,7 @@ int parseKey(nAryTreeNode *node){
 }
 
 int parseValueOffset(nAryTreeNode *node){
-
+    node->jsonText = (node->jsonText + stripValue(nAryTreeNode->jsonText)) // pointer arithmetic
 }
 
 int parseValue(nAryTreeNode *node){
