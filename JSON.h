@@ -2,6 +2,7 @@
 #define JSON_h
 
 #include <stdio.h>
+#include <stdbool.h>
 #include "StringUtils.h"
 #include "ArrayUtils.h"
 
