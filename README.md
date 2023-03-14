@@ -56,9 +56,23 @@ the parsing process has completed successfully.
 
     //Actual example: 
 
-    Template myCustomTemplate = { . . . };
-    Storage myCustomStorage = { . . . };
-    deserializeFromTemplate(char *jsonText, Template t, Storage s);
+        #include <stdio.h>
+        #include "JSON.h"
+        #include "StringUtils.h"
+
+        #define LINELIMIT 4096
+
+        int main(int argc, char **argv){
+            int c, i = 0;
+            char jsonText[LINELIMIT];
+            
+            getAll(jsonText, LINELIMIT);
+
+            DeSerializationTemplate *t;
+            Storage *s;
+            
+            deserializeFromTemplate(jsonText, t, s);
+        }
             
         
 # A Brief Introduction to JSON (From [RFC-8259](https://www.rfc-editor.org/rfc/rfc8259)):
