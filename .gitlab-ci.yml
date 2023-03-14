@@ -10,7 +10,7 @@
 # use the official gcc image, based on debian
 # can use versions as well, like gcc:5.2
 # see https://hub.docker.com/_/gcc/
-# Cole test 1
+# Cole test 1 2
 
 image: gcc
 #BUILD IS NOT NECESSARY YET, just build the test binary
