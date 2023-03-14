@@ -7,7 +7,7 @@ ________________________________________________________________________________
 of **JSON** text data
 
 I want to provide **clear control mechanisms** for users of the library to be able to 
-**define structure/type of expected data**, and also **custom storage mechanisms** for after
+**define structure and type of expected data**, and also **custom storage mechanisms** for after
 the parsing process has completed successfully. 
             
 # Usage:
