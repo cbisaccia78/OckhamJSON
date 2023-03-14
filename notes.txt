@@ -1,3 +1,16 @@
+Usage
+    /*
+        int c, i = 0;
+        char jsonText[LINELIMIT];
+        
+        getAll(jsonText, LINELIMIT);
+
+        DeSerializationTemplate *t;
+        Storage *s;
+        
+        deserializeFromTemplate(jsonText, t, s);
+    */
+
 JSON grammar rules
     ws value ws 
 
