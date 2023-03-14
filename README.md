@@ -1,7 +1,5 @@
-_________________________________________________________________________________________
+_________________________________________________________________________________________________
 # Ockham JSON
-
-# Purpose: 
 
 **C library** for non-json experts to control the **serialization**/**deserialization** process
 of **JSON** text data
@@ -9,7 +7,7 @@ of **JSON** text data
 I want to provide **clear control mechanisms** for users of the library to be able to 
 **define structure and type of expected data**, and also **custom storage mechanisms** for after
 the parsing process has completed successfully. 
-            
+_________________________________________________________________________________________________
 # Usage:
     
     /*
