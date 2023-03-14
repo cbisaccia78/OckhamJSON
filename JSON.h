@@ -68,7 +68,7 @@ bool nodeIsLeaf(nAryTreeNode *node){
 
 //node modification functions
 
-int createRootValue(nAryTreeNode *root, char *rootJsonText){
+void createRootValue(nAryTreeNode *root, char *rootJsonText){
     root->jsonText = rootJsonText;
     root->validSoFar = false;
     root->keyName = NULL;
@@ -79,21 +79,25 @@ int createRootValue(nAryTreeNode *root, char *rootJsonText){
 }
 
 
-int parseKeyOffset(nAryTreeNode *node){
-    node->jsonText = (node->jsonText + stripLeadingWS(node->jsonText)); // pointer arithmetic
+void parseKeyOffset(nAryTreeNode *node){
+    int offset = stripWSUntilControlCharacter(node->jsonText, QUOTATIONMARK);
+    if(offset < 0){
+        node->validSoFar = false;
+        return;
+    }
+    node->jsonText = node->jsonText + offset; // returns a pointer to stripped string
 }
 
-int parseKey(nAryTreeNode *node){
+void parseKey(nAryTreeNode *node){
     //do parse key
-    char *key = "test";
-    node->keyName = key;
+    node->keyName = "";
 }
 
-int parseValueOffset(nAryTreeNode *node){
-    node->jsonText = (node->jsonText + stripValue(node->jsonText)); // pointer arithmetic
+void parseValueOffset(nAryTreeNode *node){
+    node->jsonText = (node->jsonText + stripWSUntilControlCharacter(node->jsonText, VALUE_SEPARATOR)); // pointer arithmetic
 }
 
-int parseValue(nAryTreeNode *node){
+void parseValue(nAryTreeNode *node){
     //do parse value
 }
 
@@ -206,7 +210,7 @@ void deserializeFromTemplate(char *jsonText, DeSerializationTemplate *t, Storage
 /*
     generate produces strictly conforming JSON text from a struct.  
 */
-int generate(){
+void generate(){
 
 }
 
