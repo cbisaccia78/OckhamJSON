@@ -21,13 +21,6 @@ typedef enum {
     VALUE_SEPARATOR = 0x2C
 } Separator;
 
-typedef enum {
-    SPACE = 0x20,
-    TAB = 0x09,
-    NEWLINE = 0x0A,
-    CARRIAGE_RETURN = 0x0D
-} WhiteSpace; 
-
 typedef enum { OBJECT, ARRAY, NUMBER, STRING, TRUE, FALSE, NULLY, INVALID } ValueType;
 
 char DECIMALPOINT = 0x2E;

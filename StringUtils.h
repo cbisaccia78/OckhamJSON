@@ -8,12 +8,21 @@
 /*
     UNTESTED
 */
+
+typedef enum {
+    SPACE = 0x20,
+    TAB = 0x09,
+    NEWLINE = 0x0A,
+    CARRIAGE_RETURN = 0x0D
+} WhiteSpace; 
+
 int squeezeWhiteSpace(char str[], int startIndex, char controlChar){
     if(startIndex < 0 || startIndex > strlen(str))
         return -1;
     char c;
     int i,j;
     i = j = startIndex;
+
     while((c = str[startIndex++]) != '\0' && c != controlChar){
         if(c != SPACE && c != TAB && c != NEWLINE && c != CARRIAGE_RETURN)
             str[j++] = c;
