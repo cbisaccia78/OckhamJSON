@@ -21,7 +21,7 @@ build:
   # before_script:
   #   - apt update && apt -y install make autoconf
   script:
-    - gcc test.c -o test
+    - gcc unittests.c -o unittests
   artifacts:
     paths:
       - test
@@ -30,11 +30,15 @@ build:
       #   paths:
       #     - "*.o"
 
-# run tests using the binary built before
-test:
+# run tests using CUnit
+cunit:
   stage: test
   script:
-    - ./runtests.sh
+    - ./unittests
+  artifacts:
+    when: always
+    reports:
+      junit: ./unittests.xml
 
 deploy:
   stage: deploy
