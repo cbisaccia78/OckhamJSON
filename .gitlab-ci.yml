@@ -12,7 +12,7 @@
 # see https://hub.docker.com/_/gcc/
 
 image: gcc
-#BUILD IS NOT NECESSARY YET
+#BUILD IS NOT NECESSARY YET, just build the test binary
 build:
   stage: build
   # instead of calling g++ directly you can also use some build toolkit like make
