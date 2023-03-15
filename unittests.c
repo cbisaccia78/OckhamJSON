@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "External/CUnit/CUnitCI.h"
+#include "CUnit/CUnitCI.h"
 #include "JSON.h"
 #include "StringUtils.h"
 
