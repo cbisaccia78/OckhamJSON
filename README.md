@@ -1,5 +1,7 @@
 # Ockham JSON
-
+# Build Stats
+**Currently not building!!!**
+# Description
 **C library** for non-json experts to control the **serialization**/**deserialization** process
 of **JSON** text data
 
