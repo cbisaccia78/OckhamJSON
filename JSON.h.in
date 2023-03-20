@@ -6,6 +6,9 @@
 #include "StringUtils.h"
 #include "ArrayUtils.h"
 
+#define OckhamJSON_VERSION_MAJOR @OckhamJSON_VERSION_MAJOR@
+#define OckhamJSON_VERSION_MINOR @OckhamJSON_VERSION_MINOR@
+
 typedef enum { 
     BEGIN_ARRAY = 0x5B,
     BEGIN_OBJECT = 0x7B,
