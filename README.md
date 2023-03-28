@@ -1,7 +1,7 @@
 # Ockham JSON
 # Build Stats
 
-** insert here **
+![](https://gitlab.com/utilities6655811/OckhamJSON/badges/main/coverage.svg)
 # Description
 **C library** for non-json experts to control the **serialization**/**deserialization** process
 of **JSON** text data
