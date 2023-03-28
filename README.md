@@ -1,6 +1,7 @@
 # Ockham JSON
 # Build Stats
-**Currently not building!!!**
+
+[![pipeline status](https://gitlab.com/utilities6655811/OckhamJSON/badges/main/pipeline.svg)](https://gitlab.com/utilities6655811/OckhamJSON/-/commits/main) 
 # Description
 **C library** for non-json experts to control the **serialization**/**deserialization** process
 of **JSON** text data
