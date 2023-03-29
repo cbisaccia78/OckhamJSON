@@ -2,9 +2,10 @@
 #define JSON_h
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
-#include "StringUtils.h"
-#include "ArrayUtils.h"
+#include "StringUtilities/StringUtils.h"
+//#include "utils/ArrayUtils.h"
 
 #define OckhamJSON_VERSION_MAJOR @OckhamJSON_VERSION_MAJOR@
 #define OckhamJSON_VERSION_MINOR @OckhamJSON_VERSION_MINOR@
@@ -47,7 +48,7 @@ char QUOTATIONMARK = 0x22;
 char REVERSESOLIDUS = 0x5C;
 const struct {
     int start;
-    int endl;
+    int end;
 } CTRLCHARRANGE = {0x0, 0x1F};
 
 //node declaration
@@ -116,15 +117,14 @@ struct DeSerializationTemplate {
 typedef struct DeSerializationTemplate DeSerializationTemplate;
 
 DeSerializationTemplate* getChildFromKey(DeSerializationTemplate *node, char *key){
-    DeSerializationTemplate *child;
-
+    DeSerializationTemplate *child = malloc(sizeof(DeSerializationTemplate));
     return child;
 }
 
 char** enumerateChildKeys(DeSerializationTemplate *node){
     DeSerializationTemplate *child = node->firstChild;
-    int i = 0;
-    char **childKeys;
+    //int i = 0;
+    char **childKeys = malloc(sizeof(char *)); //THIS IS WRONG, JUST GETTING TO COMPILE
     while(child){
         
     }
@@ -143,14 +143,11 @@ typedef struct Storage Storage;
 
         a struct that characterizes expected schema of json
                 
-        struct that will hold the parsed data
     
     WILL:
         Parse jsonText and make sure it's valid
 
-        Populate Storage s with the jsonText, using the storage
-        rules provided by DeSerializationTemplate t
-   
+           
 */
 bool parse(nAryTreeNode *root, DeSerializationTemplate *t){
     if(nodeIsLeaf(root)){
@@ -186,7 +183,10 @@ void _deserializeFromTemplate(nAryTreeNode *root, DeSerializationTemplate *t, St
 
 }
 
-/*
+/*  
+    Populate Storage s with the jsonText, using the storage
+    rules provided by DeSerializationTemplate t
+
     DOES accept all texts that conform to the JSON grammar.
     
     DOES NOT accept non-JSON forms or extensions.
@@ -196,10 +196,9 @@ void _deserializeFromTemplate(nAryTreeNode *root, DeSerializationTemplate *t, St
     DOES NOT set limits on the length of strings
     DOES set limits on character content of strings
 */
-
 void deserializeFromTemplate(char *jsonText, DeSerializationTemplate *t, Storage *s){
     //Create root node to represent top level JSON value
-    nAryTreeNode *rootJSONValue;
+    nAryTreeNode *rootJSONValue = malloc(sizeof (nAryTreeNode));
     createRootValue(rootJSONValue, jsonText);
 
     //Parse JSON text using the help of the tree nodes
@@ -210,12 +209,6 @@ void deserializeFromTemplate(char *jsonText, DeSerializationTemplate *t, Storage
     }
 }
 
-/*
-    generate produces strictly conforming JSON text from a struct.  
-*/
-void generate(){
-
-}
 
 
 #endif
