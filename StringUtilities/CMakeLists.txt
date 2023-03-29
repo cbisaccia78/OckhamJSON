@@ -1,0 +1,8 @@
+include(CTest)
+add_library(stringutils StringUtils.c)
+add_test(NAME contains COMMAND unittests)
+add_test(NAME stripLeadingWhiteSpace COMMAND unittests)
+add_test(NAME stripUntilControlCharacter COMMAND unittests)
+add_test(NAME stripValue COMMAND unittests)
+add_test(NAME getLine COMMAND unittests)
+add_test(NAME getAll COMMAND unittests)
