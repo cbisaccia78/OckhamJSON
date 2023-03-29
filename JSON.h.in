@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include "StringUtilities/StringUtils.h"
+#include "StringUtils.h"
 //#include "utils/ArrayUtils.h"
 
 #define OckhamJSON_VERSION_MAJOR @OckhamJSON_VERSION_MAJOR@
