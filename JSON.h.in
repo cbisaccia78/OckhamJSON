@@ -82,7 +82,9 @@ void createRootValue(nAryTreeNode *root, char *rootJsonText){
     root->firstChild = NULL;
 }
 
-
+/*
+  * UNTESTED
+*/
 void parseKeyOffset(nAryTreeNode *node){
     int offset = stripWSUntilControlCharacter(node->jsonText, QUOTATIONMARK);
     if(offset < 0){
@@ -92,15 +94,24 @@ void parseKeyOffset(nAryTreeNode *node){
     node->jsonText = node->jsonText + offset; // returns a pointer to stripped string
 }
 
+/*
+  * UNTESTED
+*/
 void parseKey(nAryTreeNode *node){
     //do parse key
     node->keyName = "";
 }
 
+/*
+  * UNTESTED
+*/
 void parseValueOffset(nAryTreeNode *node){
     node->jsonText = (node->jsonText + stripWSUntilControlCharacter(node->jsonText, VALUE_SEPARATOR)); // pointer arithmetic
 }
 
+/*
+  * UNTESTED
+*/
 void parseValue(nAryTreeNode *node){
     //do parse value
 }
@@ -121,6 +132,9 @@ DeSerializationTemplate* getChildFromKey(DeSerializationTemplate *node, char *ke
     return child;
 }
 
+/*
+  * UNTESTED
+*/
 char** enumerateChildKeys(DeSerializationTemplate *node){
     DeSerializationTemplate *child = node->firstChild;
     //int i = 0;
@@ -145,10 +159,14 @@ typedef struct Storage Storage;
                 
     
     WILL:
-        Parse jsonText and make sure it's valid
-
-           
+        Parse jsonText and make sure 2 conditions are met:
+            1. Valid JSON text as specified by RFC-8259
+            2. JSON text conforms to custom structure provided by *t
+    
+    
+    UNTESTED
 */
+
 bool parse(nAryTreeNode *root, DeSerializationTemplate *t){
     if(nodeIsLeaf(root)){
         parseKeyOffset(root);
@@ -179,6 +197,9 @@ bool parse(nAryTreeNode *root, DeSerializationTemplate *t){
     return validChildren;
 }
 
+/*
+  * UNTESTED
+*/
 void _deserializeFromTemplate(nAryTreeNode *root, DeSerializationTemplate *t, Storage *s){
 
 }
@@ -195,6 +216,10 @@ void _deserializeFromTemplate(nAryTreeNode *root, DeSerializationTemplate *t, St
     DOES NOT set limits on the range and precision of numbers.  
     DOES NOT set limits on the length of strings
     DOES set limits on character content of strings
+
+    
+    UNTESTED
+
 */
 void deserializeFromTemplate(char *jsonText, DeSerializationTemplate *t, Storage *s){
     //Create root node to represent top level JSON value
