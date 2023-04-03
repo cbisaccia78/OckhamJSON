@@ -13,15 +13,14 @@
 # Cole test 1 2
 
 image: gcc
-#BUILD IS NOT NECESSARY YET, just build the test binary
 build:
   stage: build
   # instead of calling g++ directly you can also use some build toolkit like make
   # install the necessary build tools when needed
-  # before_script:
-  #   - apt update && apt -y install make autoconf
+  before_script:
+    - apt update && apt -y install cmake
   script:
-    - gcc unittests.c -o unittests
+    - mkdir build && cd build && cmake .. && cmake --build .
   artifacts:
     paths:
       - test
@@ -30,17 +29,17 @@ build:
       #   paths:
       #     - "*.o"
 
-# run tests using CUnit
-cunit:
+# run tests using CTest
+ctest:
   stage: test
   script:
-    - ./unittests
+    - ./make test
   artifacts:
     when: always
     reports:
       junit: ./unittests.xml
 
-deploy:
-  stage: deploy
-  script: echo "Define your deployment script!"
-  environment: production
+# deploy:
+  # stage: deploy
+  # script: echo "Define your deployment script!"
+  # environment: production
