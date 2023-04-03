@@ -60,6 +60,8 @@ struct nAryTreeNode {
     ValueType valueType;
     bool validSoFar;
     struct nAryTreeNode *parent;
+    struct nAryTreenode *prevSibling;
+    struct nAryTreeNode *nextSibling;
     struct nAryTreeNode *firstChild; 
 };
 typedef struct nAryTreeNode nAryTreeNode;
@@ -72,6 +74,9 @@ bool nodeIsLeaf(nAryTreeNode *node){
 
 //node modification functions
 
+/*
+  * UNTESTED
+*/
 void createRootValue(nAryTreeNode *root, char *rootJsonText){
     root->jsonText = rootJsonText;
     root->validSoFar = false;
@@ -79,6 +84,8 @@ void createRootValue(nAryTreeNode *root, char *rootJsonText){
     root->value = NULL;
     root->valueType = INVALID;
     root->parent = NULL;
+    root->prevSibling = NULL;
+    root->nextSibling = NULL;
     root->firstChild = NULL;
 }
 
@@ -121,7 +128,7 @@ void parseValue(nAryTreeNode *node){
 struct DeSerializationTemplate {
     char *key;
     ValueType valueType;
-
+    int numChildren;
     struct DeSerializationTemplate *parent;
     struct DeSerializationTemplate *firstChild;
 };
@@ -190,7 +197,7 @@ bool parse(nAryTreeNode *root, DeSerializationTemplate *t){
     bool validChildren = true;
     nAryTreeNode *child = root->firstChild;
     while(child){
-        if(!contains(enumerateChildKeys(t), child->keyName))
+        if(!contains(enumerateChildKeys(t), child->keyName, t->numChildren))
             return false;
         validChildren = validChildren && parse(child, getChildFromKey(t, child->keyName));
     }
