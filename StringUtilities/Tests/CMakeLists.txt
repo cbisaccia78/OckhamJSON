@@ -4,6 +4,7 @@ include(CTest)
 create_test_sourcelist(
   StringUtilityTests
   StringTests.c
+  Equals.c
   Contains.c
   StripLeadingWhiteSpace.c
   StripUntilControlCharacter.c

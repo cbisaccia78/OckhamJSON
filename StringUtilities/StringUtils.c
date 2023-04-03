@@ -2,19 +2,36 @@
 #include <stdio.h>
 #include "StringUtils.h"
 
-/*
+
 int main(){
-  char *jsonText = "  \t\n  \"hello\"\n";
-  printf("%d\n", stripWSUntilControlCharacter(jsonText, '"'));
+    char *hello = "hello";
+    char *hello2 = "hello";
+    return !equals(hello, hello2);
 }
-*/
+
 
 /*
     UNTESTED
 */
+int equals(char *str1, char *str2){
+    
+    int char1, char2, i = 0;
+    while((char1 = str1[i]) != '\0' && (char2 = str2[i++]) != '\0'){
+        if(char1 != char2){
+            return 0;
+        }
+    }
+    return char1 == char2; // this is testing for null byte == null byte
+}
 
-int contains(char **strArray, char *str){
-    return 0;
+/*
+    UNTESTED
+*/
+int contains(char **strArray, char *str, int length){
+    char *nextStr;
+    while(length >= 0 && !equals(strArray[--length], str))
+        ;
+    return length >= 0;
 }
 
 /*

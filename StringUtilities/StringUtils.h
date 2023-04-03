@@ -13,8 +13,13 @@ typedef enum {
 /*
   UNTESTED
 */
+int equals(char *str1, char *str2);
 
-int contains(char **strArray, char *str);
+/*
+  UNTESTED
+*/
+
+int contains(char **strArray, char *str, int length);
 
 /*
     TESTED
