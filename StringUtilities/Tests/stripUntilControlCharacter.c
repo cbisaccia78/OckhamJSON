@@ -1,3 +1,6 @@
-int stripUntilControlCharacter(int argc, int **argv){
+#include <stdio.h>
+#include "../StringUtils.h"
+
+int StripUntilControlCharacter(int argc, char **argv){
     return 0;
 }
