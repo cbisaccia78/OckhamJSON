@@ -2,16 +2,19 @@
 #include <stdio.h>
 #include "StringUtils.h"
 
-
+/*
 int main(){
     char *hello = "hello";
     char *hello2 = "hello";
     return !equals(hello, hello2);
-}
+}*/
 
 
 /*
-    UNTESTED
+    TESTED
+        Equal strings return true ? true
+        Non-equal strings return false ? 
+
 */
 int equals(char *str1, char *str2){
     
@@ -21,6 +24,7 @@ int equals(char *str1, char *str2){
             return 0;
         }
     }
+    char2 = str2[i];
     return char1 == char2; // this is testing for null byte == null byte
 }
 
