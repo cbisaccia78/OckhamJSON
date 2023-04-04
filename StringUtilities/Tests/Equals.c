@@ -3,15 +3,16 @@
 #include "../StringUtils.h"
 #include "TestUtils.h"
 
-void initTestData(CaseList *data){
-    data = malloc(sizeof(CaseList)*2);
-    data->numCases = 2;
-    data->cases
-}
+
 
 int Equals(int argc, int **argv){
     CaseList *testData;
-    initTestData(testData);
+    Case equality = {"hello", "hello"};
+    Case inequality = {"hello", "hellos"};
+    Case nullEquality = {"", ""};
+    Case nullInequality = {"", "hello"};
+    Case cases[4] = {equality, inequality, nullEquality, nullInequality};
+    initTestData(testData, 4, cases);
     int passed = 0;
     for(int i = 0; i < testData->numCases; i++){
         char **dataTuple = testData->cases[i].data;
