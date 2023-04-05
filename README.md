@@ -16,18 +16,15 @@ the parsing process has completed successfully.
     /*
         First: 
 
-            Create a custom (Template) for your particular use case:
+            Create a custom string template for your particular use case:
 
-            (Templates) are C structs which contain the expected structure of 
-            your incoming JSON data.
+            (Templates) are strings which represent the expected structure of the incoming json data text
 
-            Structure it like this:
+            Define one as follows:
 
-                struct Template {
+            char *template = "{'field1': int, 'field2': string, 'field3': {'field4': true, 'field5': false', 'field6': null, 'field7': decimal}, 'field8': [int]}"
 
-                };
-                typedef struct Template Template;
-        
+           
         Second: 
             
             Create custom (Storage) which implements your template

@@ -3,6 +3,7 @@
 #include <stdbool.h>
 #include "JSON.h"
 #include "StringUtils.h"
+#include "LinkedList.h"
 //#include "utils/ArrayUtils.h"
 
 /*
@@ -130,15 +131,33 @@ bool parse(nAryTreeNode *root, DeSerializationTemplate *t){
 
 /*
   * UNTESTED
+
+    want to parse jsonDataText and templateText in tandem. 
+
+    templateText: "{'field1': int, 'field2': string, 'field3': {'field4': true, 'field5': false', 'field6': null, 'field7': decimal}, 'field8': [int]}"
 */
-int parseA(char *jsonDataText, char *jsonTemplateText,){
+int parseA(char *jsonDataText, char *templateText){
+    jsonDataText = jsonDataText + stripLeadingWhiteSpace(jsonDataText);
+    templateText = templateText + stripLeadingWhiteSpace(templateText);
+    
+    /*
+    while keys left on stack
+        grab element
+        atom?
+            field?
+                fieldname correct?
+            value?
+        compound?        
+             
+    */
+
     return 0;
 }
 
 /*
   * UNTESTED
 */
-int parsePopulate(char *jsonDataText, char *jsonTemplateText,, Storage *s){
+int parsePopulate(char *jsonDataText, char *jsonTemplateText, Storage *s){
     return 0;
 }
 
