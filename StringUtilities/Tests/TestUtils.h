@@ -11,9 +11,11 @@ struct CaseList {
 };
 typedef struct CaseList CaseList;
 
-void initTestData(CaseList *data, int numCases, Case *cases){
-    data = malloc(sizeof(CaseList)*2);
-    data->numCases = 2;
+CaseList* initTestData(int numCases, Case *cases){
+    CaseList *data = (CaseList *)malloc(sizeof(CaseList) + numCases*sizeof(Case));
+    data->numCases = numCases;
+    data->cases = cases;
+    return data;
 }
 
 #endif
