@@ -29,11 +29,11 @@ build:
       #   paths:
       #     - "*.o"
 
-# run tests using CTest
+# run tests using CTest and output junit formatted to output.xml
 ctest:
   stage: test
   script:
-    - ./make test
+    - ./ctest --output-junit output.xml
   artifacts:
     when: always
     reports:
