@@ -9,7 +9,6 @@ create_test_sourcelist(
   StripLeadingWhiteSpace.c
   StripUntilControlCharacter.c
   StripWSUntilControlCharacter.c
-  StripValue.c
   GetLine.c
   GetAll.c
 )
