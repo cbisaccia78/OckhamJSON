@@ -13,8 +13,9 @@ target_include_directories(unittests PUBLIC
                            "${PROJECT_BINARY_DIR}"
                            "${PROJECT_SOURCE_DIR}/StringUtilities")
 
-
+add_library(json JSON.c)
 add_subdirectory(StringUtilities)
+add_subdirectory(Tests)
 target_link_libraries(unittests PUBLIC stringutils)
 
 include(CTest)
