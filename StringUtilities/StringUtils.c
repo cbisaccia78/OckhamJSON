@@ -2,6 +2,12 @@
 #include <stdio.h>
 #include "StringUtils.h"
 
+/*int main(){
+    char *test = "  \n\t{hello}";
+    int numStripped = stripWSUntilControlCharacter(test, '{');
+    return !(numStripped == 4 && equals(test + 4, "{hello}"));
+}*/
+
 /*
     TESTED
 */
@@ -64,22 +70,16 @@ int stripUntilControlCharacter(char str[], char controlCharacter){
 
 int stripWSUntilControlCharacter(char str[], char controlCharacter){
     char c;
-    int i, j;
-    i = j = 0;
-    int encounteredNonWS = 0;
+    int i = 0;
     while((c = str[i++]) != '\0' && c != controlCharacter){
-         if(!(c == SPACE || c == TAB || c == NEWLINE || c == CARRIAGE_RETURN)){
-            encounteredNonWS = 1;
-        }else if(!encounteredNonWS){
-            j++;
-        }
+         if(!(c == SPACE || c == TAB || c == NEWLINE || c == CARRIAGE_RETURN))
+            return -1;
     }
     
     if(c != controlCharacter)
         return -1;
-    
-    
-    return j; //number of ws removed
+
+    return i-1;
 }
 
 /*
