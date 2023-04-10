@@ -3,13 +3,14 @@
 #include "StringUtils.h"
 
 
-/*
-int main(){
-    char *helloVariants[3] = {"hi", "ni hao", "hello"};
-    char *hello = "";
-    printf("%d\n", contains(helloVariants, hello, 3));
-}
-*/
+
+/*int main(){
+    char *test = "  \n\t{hello}";
+    int numStripped = stripUntilControlCharacter(test, '{');
+    return !(numStripped == 4);
+    printf("%d\n", !(numStripped == -1));
+}*/
+
 
 
 /*
@@ -64,7 +65,8 @@ int stripLeadingWhiteSpace(char str[]){
 }
 
 /*
-    UNTESTED
+    TESTED
+    "  \n\t{hello}": numRemoved == 4, ptr+4 == "{hello}"
 */
 int stripUntilControlCharacter(char str[], char controlCharacter){
     char c;

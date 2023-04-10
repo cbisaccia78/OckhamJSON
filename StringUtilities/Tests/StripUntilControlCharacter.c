@@ -2,5 +2,7 @@
 #include "../StringUtils.h"
 
 int StripUntilControlCharacter(int argc, char **argv){
-    return 0;
+    char *test = "  \n\t{hello}";
+    int numStripped = stripUntilControlCharacter(test, '{');
+    return !(numStripped == 4 && equals(test + 4, "{hello}"));
 }
