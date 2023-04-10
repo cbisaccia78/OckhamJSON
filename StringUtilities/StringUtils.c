@@ -35,7 +35,7 @@ int contains(char **strArray, char *str, int length){
 }
 
 /*
-    TESTED
+    UNTESTED
 */
 int stripLeadingWhiteSpace(char str[]){
     
@@ -80,17 +80,6 @@ int stripWSUntilControlCharacter(char str[], char controlCharacter){
         return -1;
 
     return i-1;
-}
-
-/*
-    UNTESTED
-*/
-
-int stripValue(char str[]){
-    int i,j;
-    i = j = 0;
-
-    return j; 
 }
 
 /*
