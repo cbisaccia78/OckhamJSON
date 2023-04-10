@@ -2,23 +2,8 @@
 #include <stdio.h>
 #include "StringUtils.h"
 
-
-
-/*int main(){
-    char *test = "  \n\t{hello}";
-    int numStripped = stripUntilControlCharacter(test, '{');
-    return !(numStripped == 4);
-    printf("%d\n", !(numStripped == -1));
-}*/
-
-
-
 /*
     TESTED
-        Equal strings return true ? true
-        Non-equal strings return false ? true
-        null values ? true
-
 */
 int equals(char *str1, char *str2){
     
@@ -34,10 +19,6 @@ int equals(char *str1, char *str2){
 
 /*
     TESTED
-        returns true when string exists in string array? true
-        returns false when string does not exist in string array? true
-        handles null string testing? true
-        handles empty array? 
 
 */
 int contains(char **strArray, char *str, int length){
@@ -49,7 +30,6 @@ int contains(char **strArray, char *str, int length){
 
 /*
     TESTED
-        SPACESPACETABTABSPACESPACEhello\n -> 6 hello
 */
 int stripLeadingWhiteSpace(char str[]){
     
@@ -66,7 +46,6 @@ int stripLeadingWhiteSpace(char str[]){
 
 /*
     TESTED
-    "  \n\t{hello}": numRemoved == 4, ptr+4 == "{hello}"
 */
 int stripUntilControlCharacter(char str[], char controlCharacter){
     char c;
@@ -81,9 +60,6 @@ int stripUntilControlCharacter(char str[], char controlCharacter){
 
 /*
     TESTED
-        SPACESPACETABTABSPACESPACE"hello" expected 6 result 6
-        SPACESPACETABTABSPACESPACEhello" expected 6 result 6
-        SPACESPACETABTABSPACESPACEhello expected -1 result -1
 */
 
 int stripWSUntilControlCharacter(char str[], char controlCharacter){
@@ -118,8 +94,7 @@ int stripValue(char str[]){
 }
 
 /*
-    Tested
-        SPACESPACETABSPACESPACE"hello"\n
+    UNTESTED
 */
 void getLine(char buffer[], int limit){
     int c, i = 0;
@@ -130,8 +105,7 @@ void getLine(char buffer[], int limit){
 }
 
 /*
-    TESTED
-        { "test" : "test" }
+    UNTESTED
 */
 void getAll(char buffer[], int limit){
     int c, i = 0;
