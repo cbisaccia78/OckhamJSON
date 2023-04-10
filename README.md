@@ -1,9 +1,8 @@
 # Ockham JSON
 # Build Stats
 
-<picture><img alt="pipeline status" src="https://gitlab.com/utilities6655811/OckhamJSON/badges/main/pipeline.svg" /></> </picture>
-<picture><img alt="coverage report" src="https://gitlab.com/utilities6655811/OckhamJSON/badges/main/coverage.svg" /></> </picture>
-
+![pipeline status](https://gitlab.com/utilities6655811/OckhamJSON/badges/main/pipeline.svg)
+![coverage report](https://gitlab.com/utilities6655811/OckhamJSON/badges/main/coverage.svg)
 # Description
 **C library** for non-json experts to control the **serialization**/**deserialization** process
 of **JSON** text data
