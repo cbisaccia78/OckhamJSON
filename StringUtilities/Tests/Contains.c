@@ -2,5 +2,6 @@
 #include "../StringUtils.h"
 
 int Contains(int argc, char **argv){
-    return 0;
+    char *helloVariants[3] = {"hi", "ni hao", "hello"};
+    return !(contains(helloVariants, "hello", 3));
 }

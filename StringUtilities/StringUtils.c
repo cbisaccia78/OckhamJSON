@@ -2,18 +2,21 @@
 #include <stdio.h>
 #include "StringUtils.h"
 
+
 /*
 int main(){
-    char *hello = "hello";
-    char *hello2 = "hello";
-    return !equals(hello, hello2);
-}*/
+    char *helloVariants[3] = {"hi", "ni hao", "hello"};
+    char *hello = "";
+    printf("%d\n", contains(helloVariants, hello, 3));
+}
+*/
 
 
 /*
     TESTED
         Equal strings return true ? true
-        Non-equal strings return false ? 
+        Non-equal strings return false ? true
+        null values ? true
 
 */
 int equals(char *str1, char *str2){
@@ -29,7 +32,12 @@ int equals(char *str1, char *str2){
 }
 
 /*
-    UNTESTED
+    TESTED
+        returns true when string exists in string array? true
+        returns false when string does not exist in string array? true
+        handles null string testing? true
+        handles empty array? 
+
 */
 int contains(char **strArray, char *str, int length){
     char *nextStr;
