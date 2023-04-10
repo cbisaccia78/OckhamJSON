@@ -36,8 +36,10 @@ ctest:
     - ./ctest --output-junit output.xml
   artifacts:
     when: always
+    paths:
+      - output.xml
     reports:
-      junit: ./unittests.xml
+      junit: output.xml
 
 # deploy:
   # stage: deploy
