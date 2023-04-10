@@ -18,12 +18,9 @@ build:
   # instead of calling g++ directly you can also use some build toolkit like make
   # install the necessary build tools when needed
   before_script:
-    - apt update && apt -y install cmake
+    - wget https://github.com/Kitware/CMake/releases/download/v3.26.3/cmake-3.26.3.tar.gz && tar -xf cmake-3.26.3.tar.gz && cd cmake-3.26.3 && ./bootstrap && make && make install
   script:
     - mkdir build && cd build && cmake .. && cmake --build .
-  artifacts:
-    paths:
-      - test
       # depending on your build setup it's most likely a good idea to cache outputs to reduce the build time
       # cache:
       #   paths:
