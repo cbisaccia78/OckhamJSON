@@ -8,7 +8,6 @@ create_test_sourcelist(
   DeserializeFromTemplate.c
 )
 add_executable(JSONTests MACOSX_BUNDLE ${JSONTests})
-target_link_libraries(JSONTests PUBLIC json)
 
 # remove the test driver source file
 set (TestsToRun ${StringUtilityTests})

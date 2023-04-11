@@ -6,17 +6,15 @@ project( OckhamJSON VERSION 0.0.0.0 DESCRIPTION "Parser/Generator of RFC JSON in
 
 configure_file(JSON.h.in JSON.h)
 
+add_executable(example MACOSX_BUNDLE example.c JSON.c)
 
-add_executable(unittests MACOSX_BUNDLE unittests.c)
-
-target_include_directories(unittests PUBLIC 
+target_include_directories(example PUBLIC 
                            "${PROJECT_BINARY_DIR}"
-                           "${PROJECT_SOURCE_DIR}/StringUtilities")
+                           "${PROJECT_SOURCE_DIR}/StringUtilities")                           
 
-add_library(json JSON.c)
 add_subdirectory(StringUtilities)
 add_subdirectory(Tests)
-target_link_libraries(unittests PUBLIC stringutils)
+target_link_libraries(example PUBLIC stringutils)
 
 include(CTest)
 enable_testing()

@@ -27,9 +27,9 @@ typedef enum {
 
 typedef enum { OBJECT, ARRAY, NUMBER, STRING, TRUE, FALSE, NULLY, INVALID } ValueType;
 
-char DECIMALPOINT = 0x2E;
-char PLUS = 0x2B;
-char MINUS = 0x2D;
+#define DECIMALPOINT 0x2E
+#define PLUS 0x2B
+#define MINUS 0x2D
 
 typedef enum {
     ZERO = 0x30,
@@ -44,12 +44,10 @@ typedef enum {
     NINE = 0x39
 } DIGIT;
 
-char QUOTATIONMARK = 0x22;
-char REVERSESOLIDUS = 0x5C;
-const struct {
-    int start;
-    int end;
-} CTRLCHARRANGE = {0x0, 0x1F};
+#define QUOTATIONMARK 0x22
+#define REVERSESOLIDUS 0x5C
+#define CTRLCHARSTART 0x0
+#define CTRLCHAREND 0x1F
 
 //node declaration
 
@@ -96,5 +94,8 @@ char **enumerateChildKeys(DeSerializationTemplate *node);
 bool parse(nAryTreeNode *root, DeSerializationTemplate *t);
 void _deserializeFromTemplate(nAryTreeNode *root, DeSerializationTemplate *t, Storage *s);
 void deserializeFromTemplate(char *jsonText, DeSerializationTemplate *t, Storage *s);
+
+int parsePopulate(char *jsonText, char **arrayTemplate, Storage *s);
+int deserializeFromArrayTemplate(char *jsonText, char **arrayTemplate, Storage *s);
 
 #endif

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include "JSON.h"
 #include "StringUtils.h"
 //#include "utils/ArrayUtils.h"
 
@@ -124,6 +125,10 @@ bool parse(nAryTreeNode *root, DeSerializationTemplate *t){
     return validChildren;
 }
 
+int parsePopulate(char *jsonText, char **arrayTemplate, Storage *s){
+    return 0;
+}
+
 /*
   * UNTESTED
 */
@@ -159,4 +164,9 @@ void deserializeFromTemplate(char *jsonText, DeSerializationTemplate *t, Storage
     if(parsedSuccessfully){
         _deserializeFromTemplate(rootJSONValue, t, s);
     }
+}
+
+int deserializeFromArrayTemplate(char *jsonText, char **arrayTemplate, Storage *s){
+    //int numFields = parsePopulate(jsonText, arrayTemplate, s); 
+    return 0;
 }
