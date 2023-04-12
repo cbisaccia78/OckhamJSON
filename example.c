@@ -12,12 +12,12 @@
 
 int main(int argc, char **argv){
     printf("Version Major: %d\nVersion Minor: %d\n", OckhamJSON_VERSION_MAJOR, OckhamJSON_VERSION_MINOR );
-    char databuff[L1_CACHE_SIZE/4]; //try to allow room for storage / deserialization template in cache as well if possible. 
-    char arrayTemplate[L1_CACHE_SIZE/4];
-    getAll(databuff, L1_CACHE_SIZE/4);
-    getAll(arrayTemplate, L1_CACHE_SIZE/4);
+    char dataBuffer[L1_CACHE_SIZE/4]; //try to allow room for storage / deserialization template in cache as well if possible. 
+    char templateBuffer[L1_CACHE_SIZE/4];
+    getAll(dataBuffer, L1_CACHE_SIZE/4);
+    getAll(templateBuffer, L1_CACHE_SIZE/4);
 
     //at this point we've got cachesize/2 left for the storage structure
-    printf("%s\n", databuff);
-    printf("%s\n", arrayTemplate);
+    int res = parseA(dataBuffer, templateBuffer);
+    printf("%s", res == 0 ? "true" : "false");
 }
