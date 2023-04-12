@@ -5,6 +5,9 @@
 #include "StringUtils.h"
 //#include "utils/ArrayUtils.h"
 
+/*
+  * UNTESTED
+*/
 bool nodeIsLeaf(nAryTreeNode *node){
     return true;
 }
@@ -125,7 +128,17 @@ bool parse(nAryTreeNode *root, DeSerializationTemplate *t){
     return validChildren;
 }
 
-int parsePopulate(char *jsonText, char **arrayTemplate, Storage *s){
+/*
+  * UNTESTED
+*/
+int parseA(char *jsonDataText, char *jsonTemplateText,){
+    return 0;
+}
+
+/*
+  * UNTESTED
+*/
+int parsePopulate(char *jsonDataText, char *jsonTemplateText,, Storage *s){
     return 0;
 }
 
@@ -166,6 +179,9 @@ void deserializeFromTemplate(char *jsonText, DeSerializationTemplate *t, Storage
     }
 }
 
+/*
+  * UNTESTED
+*/
 int deserializeFromArrayTemplate(char *jsonText, char **arrayTemplate, Storage *s){
     //int numFields = parsePopulate(jsonText, arrayTemplate, s); 
     return 0;

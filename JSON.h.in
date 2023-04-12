@@ -95,7 +95,8 @@ bool parse(nAryTreeNode *root, DeSerializationTemplate *t);
 void _deserializeFromTemplate(nAryTreeNode *root, DeSerializationTemplate *t, Storage *s);
 void deserializeFromTemplate(char *jsonText, DeSerializationTemplate *t, Storage *s);
 
-int parsePopulate(char *jsonText, char **arrayTemplate, Storage *s);
+int parseA(char *jsonDataText, char *jsonTemplateText);
+int parsePopulate(char *jsonDataText, char *jsonTemplateText, Storage *s);
 int deserializeFromArrayTemplate(char *jsonText, char **arrayTemplate, Storage *s);
 
 #endif
