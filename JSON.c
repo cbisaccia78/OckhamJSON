@@ -7,6 +7,31 @@
 /*
     UNTESTED
 */
+int parseNull(char *jsonSubString, char *templateSubString){}
+/*
+    UNTESTED
+*/
+int parseFalse(char *jsonSubString, char *templateSubString){}
+/*
+    UNTESTED
+*/
+int parseTrue(char *jsonSubString, char *templateSubString){}
+/*
+    UNTESTED
+*/
+int parseString(char *jsonSubString, char *templateSubString){}
+/*
+    UNTESTED
+*/
+int parseNumber(char *jsonSubString, char *templateSubString){}
+/*
+    UNTESTED
+*/
+int parseSingleton(char *jsonSubString, char *templateSubString){}
+
+/*
+    UNTESTED
+*/
 int parseMember(char *jsonSubString, char *templateSubString){
     return 0;
 }
