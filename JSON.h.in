@@ -25,6 +25,18 @@ typedef enum { OBJECT, ARRAY, NUMBER, STRING, TRUE, FALSE, NULLY, INVALID } Valu
 #define DECIMALPOINT 0x2E
 #define PLUS 0x2B
 #define MINUS 0x2D
+#define QUOTATIONMARK 0x22
+#define REVERSESOLIDUS 0x5C
+#define CTRLCHARSTART 0x0
+#define CTRLCHAREND 0x1F
+
+/*
+    Error codes
+*/
+#define VALID 0
+#define ERROR_EMPTY_TEXT 1
+#define ERROR_INVALID_MEMBER 2
+
 
 typedef enum {
     ZERO = 0x30,
@@ -39,32 +51,17 @@ typedef enum {
     NINE = 0x39
 } DIGIT;
 
-#define QUOTATIONMARK 0x22
-#define REVERSESOLIDUS 0x5C
-#define CTRLCHARSTART 0x0
-#define CTRLCHAREND 0x1F
-
 struct Storage {
 
 };
 typedef struct Storage Storage;
 
-//node validation functions
-bool nodeIsLeaf(nAryTreeNode *node);
 
-//node modification functions
-void createRootValue(nAryTreeNode *root, char *rootJsonText);
-void parseKeyOffset(nAryTreeNode *node);
-void parseKey(nAryTreeNode *node);
-void parseValueOffset(nAryTreeNode *node);
-void parseValue(nAryTreeNode *node);
+void deserializeFromTemplate(char *jsonText, char *templateTExt, Storage *s);
 
-void _deserializeFromTemplate(nAryTreeNode *root, DeSerializationTemplate *t, Storage *s);
-void deserializeFromTemplate(char *jsonText, DeSerializationTemplate *t, Storage *s);
-
-int parseJSONVal(char *jsonSubString, char *templateSubString)
+int parseMember(char *jsonSubString, char *templateSubString);
+int parseJSONVal(char *jsonSubString, char *templateSubString);
 int parseA(char *jsonDataText, char *templateText);
 int parsePopulate(char *jsonDataText, char *jsonTemplateText, Storage *s);
-int deserializeFromArrayTemplate(char *jsonText, char **arrayTemplate, Storage *s);
 
 #endif

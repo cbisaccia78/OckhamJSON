@@ -4,6 +4,12 @@
 #include "JSON.h"
 #include "StringUtils.h"
 
+/*
+    UNTESTED
+*/
+int parseMember(char *jsonSubString, char *templateSubString){
+    return 0;
+}
 
 /*
     GIVEN: 
@@ -17,38 +23,38 @@
         Parse jsonText and make sure 2 conditions are met:
             1. Valid JSON text as specified by RFC-8259
             2. JSON text conforms to custom structure provided by *t
-    
-    
-    UNTESTED
-*/
-
-/*
-    object = begin-object [ member *( value-separator member ) ] end-object
-
-        member = string name-separator value
-
-    array = begin-array [ value *( value-separator value ) ] end-array
 
     insignificant whitespace allowed before or after any of the 6 structural characters
 
+    UNTESTED
+
 */
 int parseJSONVal(char *jsonSubString, char *templateSubString){
-    jsonSubString = jsonSubString + stripLeadingWhiteSpace(jsonSubString);
-    templateSubString = templateSubString + stripLeadingWhiteSpace(templateSubString);
-    char c;
-    while((c = *jsonSubString) != '\0'){
+    stripLeadingWhiteSpace(&jsonSubString);
+    stripLeadingWhiteSpace(&templateSubString);
+    char c = *jsonSubString;
+    if(c != '\0'){
         if(c == BEGIN_OBJECT){
-            int valid = 1;
-            int numWS = stripLeadingWhiteSpace(jsonSubString);
-            if(numWS == -1){
-                jsonSubString += numWS;
-                parseName(jsonSubString);
+            /*
+                object = begin-object [ member *( value-separator member ) ] end-object
 
-            }
+                member = string name-separator value
+            */
+            int statusCode;
+            while(!(statusCode = parseMember(&jsonSubString, &templateSubString))) //this logic traverses and validates the whole tree
+                ;
+            return statusCode;
+
         }else if(c == BEGIN_ARRAY){
-            int valid = 1;
+            /*
+                array = begin-array [ value *( value-separator value ) ] end-array
+            */
+            int statusCode;
+            while(!(statusCode = parseJSONVal(&jsonSubString, &templateSubString))) //this logic traverses and validates the whole tree
+                ;
+            return statusCode;
         }else{
-            return parseSingleton(jsonSubString, templateSubString)
+            return parseSingleton(&jsonSubString, &templateSubString)
         }
     }
     return 0;
