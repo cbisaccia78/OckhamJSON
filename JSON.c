@@ -3,84 +3,7 @@
 #include <stdbool.h>
 #include "JSON.h"
 #include "StringUtils.h"
-#include "LinkedList.h"
-//#include "utils/ArrayUtils.h"
 
-/*
-  * UNTESTED
-*/
-bool nodeIsLeaf(nAryTreeNode *node){
-    return true;
-}
-
-//node modification functions
-
-/*
-  * UNTESTED
-*/
-void createRootValue(nAryTreeNode *root, char *rootJsonText){
-    root->jsonText = rootJsonText;
-    root->validSoFar = false;
-    root->keyName = NULL;
-    root->value = NULL;
-    root->valueType = INVALID;
-    root->parent = NULL;
-    root->prevSibling = NULL;
-    root->nextSibling = NULL;
-    root->firstChild = NULL;
-}
-
-/*
-  * UNTESTED
-*/
-void parseKeyOffset(nAryTreeNode *node){
-    int offset = stripWSUntilControlCharacter(node->jsonText, QUOTATIONMARK);
-    if(offset < 0){
-        node->validSoFar = false;
-        return;
-    }
-    node->jsonText = node->jsonText + offset; // returns a pointer to stripped string
-}
-
-/*
-  * UNTESTED
-*/
-void parseKey(nAryTreeNode *node){
-    //do parse key
-    node->keyName = "";
-}
-
-/*
-  * UNTESTED
-*/
-void parseValueOffset(nAryTreeNode *node){
-    node->jsonText = (node->jsonText + stripWSUntilControlCharacter(node->jsonText, VALUE_SEPARATOR)); // pointer arithmetic
-}
-
-/*
-  * UNTESTED
-*/
-void parseValue(nAryTreeNode *node){
-    //do parse value
-}
-
-DeSerializationTemplate* getChildFromKey(DeSerializationTemplate *node, char *key){
-    DeSerializationTemplate *child = malloc(sizeof(DeSerializationTemplate));
-    return child;
-}
-
-/*
-  * UNTESTED
-*/
-char** enumerateChildKeys(DeSerializationTemplate *node){
-    DeSerializationTemplate *child = node->firstChild;
-    //int i = 0;
-    char **childKeys = malloc(sizeof(char *)); //THIS IS WRONG, JUST GETTING TO COMPILE
-    while(child){
-        
-    }
-    return childKeys;
-}
 
 /*
     GIVEN: 
@@ -99,59 +22,49 @@ char** enumerateChildKeys(DeSerializationTemplate *node){
     UNTESTED
 */
 
-bool parse(nAryTreeNode *root, DeSerializationTemplate *t){
-    if(nodeIsLeaf(root)){
-        parseKeyOffset(root);
-        if(root->validSoFar){
-            parseKey(root);
-            if(root->validSoFar){
-                if(root->keyName == t->key){
-                    parseValueOffset(root);
-                    if(root->validSoFar){
-                        parseValue(root);
-                        if(root->valueType != INVALID && root->valueType == t->valueType){
-                            return true;
-                        }
-                    }
-                }
-                
+/*
+    object = begin-object [ member *( value-separator member ) ] end-object
+
+        member = string name-separator value
+
+    array = begin-array [ value *( value-separator value ) ] end-array
+
+    insignificant whitespace allowed before or after any of the 6 structural characters
+
+*/
+int parseJSONVal(char *jsonSubString, char *templateSubString){
+    jsonSubString = jsonSubString + stripLeadingWhiteSpace(jsonSubString);
+    templateSubString = templateSubString + stripLeadingWhiteSpace(templateSubString);
+    char c;
+    while((c = *jsonSubString) != '\0'){
+        if(c == BEGIN_OBJECT){
+            int valid = 1;
+            int numWS = stripLeadingWhiteSpace(jsonSubString);
+            if(numWS == -1){
+                jsonSubString += numWS;
+                parseName(jsonSubString);
+
             }
+        }else if(c == BEGIN_ARRAY){
+            int valid = 1;
+        }else{
+            return parseSingleton(jsonSubString, templateSubString)
         }
-        return false;
     }
-    bool validChildren = true;
-    nAryTreeNode *child = root->firstChild;
-    while(child){
-        if(!contains(enumerateChildKeys(t), child->keyName, t->numChildren))
-            return false;
-        validChildren = validChildren && parse(child, getChildFromKey(t, child->keyName));
-    }
-    return validChildren;
+    return 0;
 }
 
 /*
   * UNTESTED
 
     want to parse jsonDataText and templateText in tandem. 
-
-    templateText: "{'field1': int, 'field2': string, 'field3': {'field4': true, 'field5': false', 'field6': null, 'field7': decimal}, 'field8': [int]}"
+    jsonDataText: "w*?Vws*"
+    templateText: "(num|string|object|array|null|true|false)"
 */
 int parseA(char *jsonDataText, char *templateText){
-    jsonDataText = jsonDataText + stripLeadingWhiteSpace(jsonDataText);
-    templateText = templateText + stripLeadingWhiteSpace(templateText);
-    
-    /*
-    while keys left on stack
-        grab element
-        atom?
-            field?
-                fieldname correct?
-            value?
-        compound?        
-             
-    */
-
-    return 0;
+    if(jsonDataText[0] == '\0')
+        return 1;
+    return parseJSONVal(jsonDataText, templateText);
 }
 
 /*
@@ -159,13 +72,6 @@ int parseA(char *jsonDataText, char *templateText){
 */
 int parsePopulate(char *jsonDataText, char *jsonTemplateText, Storage *s){
     return 0;
-}
-
-/*
-  * UNTESTED
-*/
-void _deserializeFromTemplate(nAryTreeNode *root, DeSerializationTemplate *t, Storage *s){
-
 }
 
 /*  
@@ -185,23 +91,7 @@ void _deserializeFromTemplate(nAryTreeNode *root, DeSerializationTemplate *t, St
     UNTESTED
 
 */
-void deserializeFromTemplate(char *jsonText, DeSerializationTemplate *t, Storage *s){
-    //Create root node to represent top level JSON value
-    nAryTreeNode *rootJSONValue = malloc(sizeof (nAryTreeNode));
-    createRootValue(rootJSONValue, jsonText);
-
+void deserializeFromTemplate(char *jsonText, char *templateText, Storage *s){
     //Parse JSON text using the help of the tree nodes
-    bool parsedSuccessfully = parse(rootJSONValue, t);
-
-    if(parsedSuccessfully){
-        _deserializeFromTemplate(rootJSONValue, t, s);
-    }
-}
-
-/*
-  * UNTESTED
-*/
-int deserializeFromArrayTemplate(char *jsonText, char **arrayTemplate, Storage *s){
-    //int numFields = parsePopulate(jsonText, arrayTemplate, s); 
-    return 0;
+    parsePopulate(jsonText, templateText, s);
 }

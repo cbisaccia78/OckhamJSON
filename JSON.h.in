@@ -10,20 +10,15 @@
 #define OckhamJSON_VERSION_MAJOR @OckhamJSON_VERSION_MAJOR@
 #define OckhamJSON_VERSION_MINOR @OckhamJSON_VERSION_MINOR@
 
-typedef enum { 
-    BEGIN_ARRAY = 0x5B,
-    BEGIN_OBJECT = 0x7B,
-} StructuralOpener;
+#define BEGIN_ARRAY  0x5B
+#define BEGIN_OBJECT  0x7B
 
-typedef enum { 
-    END_ARRAY = 0x5D,
-    END_OBJECT = 0x7D, 
-} StructuralCloser;
+#define END_ARRAY  0x5D
+#define END_OBJECT  0x7D,
 
-typedef enum {
-    NAME_SEPARATOR = 0x3A,
-    VALUE_SEPARATOR = 0x2C
-} Separator;
+#define NAME_SEPARATOR  0x3A
+#define VALUE_SEPARATOR  0x2C
+
 
 typedef enum { OBJECT, ARRAY, NUMBER, STRING, TRUE, FALSE, NULLY, INVALID } ValueType;
 
@@ -49,34 +44,10 @@ typedef enum {
 #define CTRLCHARSTART 0x0
 #define CTRLCHAREND 0x1F
 
-//node declaration
-
-struct nAryTreeNode {
-    char *jsonText;
-    char *keyName;
-    char *value; // should not be set until leaf node
-    ValueType valueType;
-    bool validSoFar;
-    struct nAryTreeNode *parent;
-    struct nAryTreenode *prevSibling;
-    struct nAryTreeNode *nextSibling;
-    struct nAryTreeNode *firstChild; 
-};
-typedef struct nAryTreeNode nAryTreeNode;
-
 struct Storage {
 
 };
 typedef struct Storage Storage;
-
-struct DeSerializationTemplate {
-    char *key;
-    ValueType valueType;
-    int numChildren;
-    struct DeSerializationTemplate *parent;
-    struct DeSerializationTemplate *firstChild;
-};
-typedef struct DeSerializationTemplate DeSerializationTemplate;
 
 //node validation functions
 bool nodeIsLeaf(nAryTreeNode *node);
@@ -88,13 +59,10 @@ void parseKey(nAryTreeNode *node);
 void parseValueOffset(nAryTreeNode *node);
 void parseValue(nAryTreeNode *node);
 
-DeSerializationTemplate* getChildFromKey(DeSerializationTemplate *node, char *key);
-char **enumerateChildKeys(DeSerializationTemplate *node);
-
-bool parse(nAryTreeNode *root, DeSerializationTemplate *t);
 void _deserializeFromTemplate(nAryTreeNode *root, DeSerializationTemplate *t, Storage *s);
 void deserializeFromTemplate(char *jsonText, DeSerializationTemplate *t, Storage *s);
 
+int parseJSONVal(char *jsonSubString, char *templateSubString)
 int parseA(char *jsonDataText, char *templateText);
 int parsePopulate(char *jsonDataText, char *jsonTemplateText, Storage *s);
 int deserializeFromArrayTemplate(char *jsonText, char **arrayTemplate, Storage *s);
