@@ -59,15 +59,15 @@ typedef struct Storage Storage;
 
 void deserializeFromTemplate(char *jsonText, char *templateTExt, Storage *s);
 
-int parseNull(char *jsonSubString, char *templateSubString);
-int parseFalse(char *jsonSubString, char *templateSubString);
-int parseTrue(char *jsonSubString, char *templateSubString);
-int parseString(char *jsonSubString, char *templateSubString);
-int parseNumber(char *jsonSubString, char *templateSubString);
-int parseSingleton(char *jsonSubString, char *templateSubString);
-int parseMember(char *jsonSubString, char *templateSubString);
-int parseJSONVal(char *jsonSubString, char *templateSubString);
-int parseA(char *jsonDataText, char *templateText);
-int parsePopulate(char *jsonDataText, char *jsonTemplateText, Storage *s);
+int parseNull(char **jsonSubString, char **templateSubString);
+int parseFalse(char **jsonSubString, char **templateSubString);
+int parseTrue(char **jsonSubString, char **templateSubString);
+int parseString(char **jsonSubString, char **templateSubString);
+int parseNumber(char **jsonSubString, char **templateSubString);
+int parseSingleton(char **jsonSubString, char **templateSubString);
+int parseMember(char **jsonSubString, char **templateSubString);
+int parseJSONVal(char **jsonSubString, char **templateSubString);
+int parseA(char **jsonSubString, char **templateSubString);
+int parsePopulate(char **jsonDataText, char **jsonTemplateText, Storage *s);
 
 #endif
