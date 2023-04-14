@@ -36,7 +36,7 @@ int parseJSONVal(char *jsonSubString, char *templateSubString){
     if(c != '\0'){
         if(c == BEGIN_OBJECT){
             /*
-                object = begin-object [ member *( value-separator member ) ] end-object
+                object = begin-object [ member *( value-separator member ) ] end-object 
 
                 member = string name-separator value
             */
@@ -50,7 +50,7 @@ int parseJSONVal(char *jsonSubString, char *templateSubString){
                 array = begin-array [ value *( value-separator value ) ] end-array
             */
             int statusCode;
-            while(!(statusCode = parseJSONVal(&jsonSubString, &templateSubString))) //this logic traverses and validates the whole tree
+            while(!(statusCode = parseJSONVal(&jsonSubString, &templateSubString))) //this logic traverses and validates the whole tree.
                 ;
             return statusCode;
         }else{
