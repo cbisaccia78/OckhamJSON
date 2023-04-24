@@ -7,15 +7,21 @@
 /*
     UNTESTED
 */
-int parseNull(char **jsonSubString, char **templateSubString){}
+int parseNull(char **jsonSubString, char **templateSubString){
+    return equals(, "null");
+}
 /*
     UNTESTED
 */
-int parseFalse(char **jsonSubString, char **templateSubString){}
+int parseFalse(char **jsonSubString, char **templateSubString){
+    return equals(copy(jsonSubString), "false");
+}
 /*
     UNTESTED
 */
-int parseTrue(char **jsonSubString, char **templateSubString){}
+int parseTrue(char **jsonSubString, char **templateSubString){
+    return equals(copy(jsonSubString), "true");
+}
 /*
     UNTESTED
 */
@@ -28,7 +34,21 @@ int parseNumber(char **jsonSubString, char **templateSubString){}
     UNTESTED
 */
 int parseSingleton(char **jsonSubString, char **templateSubString){
-
+    stripLeadingWhiteSpace(jsonSubString);
+    stripLeadingWhiteSpace(templateSubString);
+    char c = **jsonSubString;
+    switch(c){
+        case 'n':
+            return parseNull(jsonSubString, templateSubString);
+        case 'f':
+            return parseFalse(jsonSubString, templateSubString);
+        case 't':
+            return parseTrue(jsonSubString, templateSubString);
+        case '"':
+            return parseString(jsonSubString, templateSubString);
+        default:
+            return parseNumber(jsonSubString, templateSubString);
+    }
 }
 
 /*

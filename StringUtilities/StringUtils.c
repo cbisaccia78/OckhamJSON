@@ -37,6 +37,16 @@ int contains(char **strArray, char *str, int length){
 /*
     UNTESTED
 */
+int copy(char str[], char buffer[], int length){
+    char c;
+    for(int i = 0; i < length && !(c = '\0'); buffer[i] = str[i++])
+        ;
+    
+}
+
+/*
+    UNTESTED
+*/
 int stripLeadingWhiteSpace(char str[]){
     
     char c;
