@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "JSON.h"
 #include "StringUtils.h"
 
@@ -12,12 +13,12 @@
 
 int main(int argc, char **argv){
     printf("Version Major: %d\nVersion Minor: %d\n", OckhamJSON_VERSION_MAJOR, OckhamJSON_VERSION_MINOR );
-    char dataBuffer[L1_CACHE_SIZE/4]; //try to allow room for storage / deserialization template in cache as well if possible. 
-    char templateBuffer[L1_CACHE_SIZE/4];
+    char *dataBuffer = malloc(L1_CACHE_SIZE/4); //try to allow room for storage / deserialization template in cache as well if possible. 
+    char *templateBuffer =  malloc(L1_CACHE_SIZE/4);
     getAll(dataBuffer, L1_CACHE_SIZE/4);
     getAll(templateBuffer, L1_CACHE_SIZE/4);
 
     //at this point we've got cachesize/2 left for the storage structure
-    int res = parseA(dataBuffer, templateBuffer);
+    int res = parseA(&dataBuffer, &templateBuffer);
     printf("%s", res == 0 ? "true" : "false");
 }
