@@ -3,33 +3,24 @@
 #include <stdbool.h>
 #include "JSON.h"
 #include "StringUtils.h"
+/*
+    UNTESTED
+*/
+int equalsParse(char **jsonSubString, char *string, int length){
+    int i = 0;
+    while(*jsonSubString[i] == string[i] && i < length)
+        ;
+    return i == length;
+}
 
 /*
     UNTESTED
 */
-int parseNull(char **jsonSubString, char **templateSubString){
-    return equals(, "null");
-}
+int parseString(char **jsonSubString, char *string){}
 /*
     UNTESTED
 */
-int parseFalse(char **jsonSubString, char **templateSubString){
-    return equals(copy(jsonSubString), "false");
-}
-/*
-    UNTESTED
-*/
-int parseTrue(char **jsonSubString, char **templateSubString){
-    return equals(copy(jsonSubString), "true");
-}
-/*
-    UNTESTED
-*/
-int parseString(char **jsonSubString, char **templateSubString){}
-/*
-    UNTESTED
-*/
-int parseNumber(char **jsonSubString, char **templateSubString){}
+int parseNumber(char **jsonSubString, char *string){}
 /*
     UNTESTED
 */
@@ -39,11 +30,11 @@ int parseSingleton(char **jsonSubString, char **templateSubString){
     char c = **jsonSubString;
     switch(c){
         case 'n':
-            return parseNull(jsonSubString, templateSubString);
+            return equalsParse(jsonSubString, "ull");
         case 'f':
-            return parseFalse(jsonSubString, templateSubString);
+            return equalsParse(jsonSubString, "alse");
         case 't':
-            return parseTrue(jsonSubString, templateSubString);
+            return equalsParse(jsonSubString, "rue");
         case '"':
             return parseString(jsonSubString, templateSubString);
         default:
@@ -109,7 +100,7 @@ int parseJSONVal(char **jsonSubString, char **templateSubString){
                 ;
             return statusCode;
         }else{
-            return parseSingleton(jsonSubString, templateSubString)
+            return parseSingleton(jsonSubString, templateSubString);
         }
     }
 }
