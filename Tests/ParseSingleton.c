@@ -1,3 +1,5 @@
 #include <stdio.h>
 #include "JSON.h"
-int ParseSingleton(int argc, char **argv){}
+int ParseSingleton(int argc, char **argv){
+    return 0;
+}

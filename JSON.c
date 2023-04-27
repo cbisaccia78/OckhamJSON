@@ -8,37 +8,44 @@
 */
 int equalsParse(char **jsonSubString, char *string, int length){
     int i = 0;
-    while(*jsonSubString[i] == string[i] && i < length)
-        ;
+    while(**jsonSubString == string[i] && (i++ < length))
+        jsonSubString++;
     return i == length;
 }
 
 /*
     UNTESTED
 */
-int parseString(char **jsonSubString, char *string){}
+int parseString(char **jsonSubString){
+    return 0;
+}
 /*
     UNTESTED
 */
-int parseNumber(char **jsonSubString, char *string){}
+int parseNumber(char **jsonSubString){
+    return 0;
+}
+
+int parseKeyName(char **jsonSubString, char **templateSubString){
+    return 0;
+}
 /*
     UNTESTED
 */
-int parseSingleton(char **jsonSubString, char **templateSubString){
+int parseSingleton(char **jsonSubString){
     stripLeadingWhiteSpace(jsonSubString);
-    stripLeadingWhiteSpace(templateSubString);
     char c = **jsonSubString;
     switch(c){
         case 'n':
-            return equalsParse(jsonSubString, "ull");
+            return equalsParse(jsonSubString, "ull", 3);
         case 'f':
-            return equalsParse(jsonSubString, "alse");
+            return equalsParse(jsonSubString, "alse", 4);
         case 't':
-            return equalsParse(jsonSubString, "rue");
+            return equalsParse(jsonSubString, "rue", 3);
         case '"':
-            return parseString(jsonSubString, templateSubString);
+            return parseString(jsonSubString);
         default:
-            return parseNumber(jsonSubString, templateSubString);
+            return parseNumber(jsonSubString);
     }
 }
 
@@ -51,9 +58,9 @@ int parseSingleton(char **jsonSubString, char **templateSubString){
 */
 int parseMember(char **jsonSubString, char **templateSubString){
     int status;
-    if(!(status = (parseName(jsonSubString, templateSubString) == VALID)))
-        if(!(status = (parseControlCharacter(jsonSubString, NAME_SEPARATOR) == VALID)))
-            if(!(status = (parseJSONVal(jsonSubString, templateSubString) == VALID)))
+    if(!(status = (parseKeyName(jsonSubString, templateSubString) == VALID)))
+        if(!(status = (stripWSUntilControlCharacter(jsonSubString, NAME_SEPARATOR) == VALID)))
+            status = (parseJSONVal(jsonSubString, templateSubString) == VALID);
     return status;
 }
 
@@ -76,6 +83,7 @@ int parseMember(char **jsonSubString, char **templateSubString){
 
 */
 int parseJSONVal(char **jsonSubString, char **templateSubString){
+    int statusCode = VALID;
     stripLeadingWhiteSpace(jsonSubString);
     stripLeadingWhiteSpace(templateSubString);
     char c = **jsonSubString;
@@ -86,7 +94,6 @@ int parseJSONVal(char **jsonSubString, char **templateSubString){
 
                 member = string name-separator value
             */
-            int statusCode;
             while(!(statusCode = parseMember(jsonSubString, templateSubString))) //this logic traverses and validates the whole tree
                 ;
             return statusCode;
@@ -100,9 +107,10 @@ int parseJSONVal(char **jsonSubString, char **templateSubString){
                 ;
             return statusCode;
         }else{
-            return parseSingleton(jsonSubString, templateSubString);
+            return parseSingleton(jsonSubString);
         }
     }
+    return statusCode;
 }
 
 /*
@@ -121,7 +129,7 @@ int parseA(char **jsonDataText, char **templateText){
 /*
   * UNTESTED
 */
-int parsePopulate(char **jsonDataText, char **sonTemplateText, Storage *s){
+int parsePopulate(char **jsonDataText, char **jsonTemplateText, Storage *s){
     return 0;
 }
 
@@ -142,7 +150,7 @@ int parsePopulate(char **jsonDataText, char **sonTemplateText, Storage *s){
     UNTESTED
 
 */
-void deserializeFromTemplate(char *jsonText, char *templateText, Storage *s){
+void deserializeFromTemplate(char **jsonText, char **templateText, Storage *s){
     //Parse JSON text using the help of the tree nodes
     parsePopulate(jsonText, templateText, s);
 }

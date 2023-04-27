@@ -47,49 +47,51 @@ int copy(char str[], char buffer[], int length){
 /*
     UNTESTED
 */
-int stripLeadingWhiteSpace(char str[]){
+int stripLeadingWhiteSpace(char **str){
     
     char c;
-    int i = 0;
+    char *base = *str;
 
-    while((c = str[i++]) != '\0'){
+    while((c = **str) != '\0'){
         if(!(c == SPACE || c == TAB || c == NEWLINE || c == CARRIAGE_RETURN))
             break;
-
+        (*str)++;
     }
-    return i-1; //number of ws removed
+    return *str - base; //number of ws removed
 }
 
 /*
-    TESTED
+    Untested
 */
-int stripUntilControlCharacter(char str[], char controlCharacter){
+int stripUntilControlCharacter(char **str, char controlCharacter){
     char c;
-    int i = 0;
-    while((c = str[i++]) != '\0' && c != controlCharacter)
-        ;
+    char *base = *str;
+
+    while((c = **str) != '\0' && c != controlCharacter)
+        (*str)++;
     
     if(c != controlCharacter)
         return -1;
-    return i-1; //number of ws removed
+    return *str - base; //number of ws removed
 }
 
 /*
-    TESTED
+    Untested
 */
 
-int stripWSUntilControlCharacter(char str[], char controlCharacter){
+int stripWSUntilControlCharacter(char **str, char controlCharacter){
     char c;
-    int i = 0;
-    while((c = str[i++]) != '\0' && c != controlCharacter){
+    char *base = *str;
+    while((c = **str) != '\0' && c != controlCharacter){
          if(!(c == SPACE || c == TAB || c == NEWLINE || c == CARRIAGE_RETURN))
             return -1;
+        (*str)++;
     }
     
     if(c != controlCharacter)
         return -1;
 
-    return i-1;
+    return *str - base; 
 }
 
 /*

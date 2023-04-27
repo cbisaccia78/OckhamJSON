@@ -57,14 +57,12 @@ struct Storage {
 typedef struct Storage Storage;
 
 
-void deserializeFromTemplate(char *jsonText, char *templateTExt, Storage *s);
+void deserializeFromTemplate(char **jsonText, char **templateTExt, Storage *s);
 
-int parseNull(char **jsonSubString, char **templateSubString);
-int parseFalse(char **jsonSubString, char **templateSubString);
-int parseTrue(char **jsonSubString, char **templateSubString);
-int parseString(char **jsonSubString, char **templateSubString);
-int parseNumber(char **jsonSubString, char **templateSubString);
-int parseSingleton(char **jsonSubString, char **templateSubString);
+int parseString(char **jsonSubString);
+int parseNumber(char **jsonSubString);
+int parseKeyName(char **jsonSubString, char **templateSubString);
+int parseSingleton(char **jsonSubString);
 int parseMember(char **jsonSubString, char **templateSubString);
 int parseJSONVal(char **jsonSubString, char **templateSubString);
 int parseA(char **jsonSubString, char **templateSubString);

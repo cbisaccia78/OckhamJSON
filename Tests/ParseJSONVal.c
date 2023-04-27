@@ -1,3 +1,5 @@
 #include <stdio.h>
 #include "JSON.h"
-int ParseJSONVal(int argc, char **argv){}
+int ParseJSONVal(int argc, char **argv){
+    return 0;
+}
