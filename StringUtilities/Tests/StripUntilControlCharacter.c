@@ -4,7 +4,7 @@
 int simpleStripTest(){
     char *test = "  \n\t{hello}";
     int numStripped = stripUntilControlCharacter(&test, '{');
-    return !(numStripped == 4 && equals(test + 4, "{hello}"));
+    return !(numStripped == 4 && equals(test, "{hello}"));
 }
 
 int errorStripTest(){

@@ -1,13 +1,12 @@
 #include <string.h>
 #include <stdio.h>
 #include "StringUtils.h"
+/*
 
-/*int main(){
-    char *test = "  \n\t{hello}";
-    int numStripped = stripWSUntilControlCharacter(test, '{');
-    return !(numStripped == 4 && equals(test + 4, "{hello}"));
-}*/
-
+int main(int argc, int **argv){
+    return !(simpleWSTest() && errorWSTest1() && errorWSTest2());
+}
+*/
 /*
     TESTED
 */
@@ -82,7 +81,7 @@ int stripUntilControlCharacter(char **str, char controlCharacter){
 int stripWSUntilControlCharacter(char **str, char controlCharacter){
     char c;
     char *base = *str;
-    while((c = **str) != '\0' && c != controlCharacter){
+    while((c = **str) != controlCharacter && c != '\0'){
          if(!(c == SPACE || c == TAB || c == NEWLINE || c == CARRIAGE_RETURN))
             return -1;
         (*str)++;
