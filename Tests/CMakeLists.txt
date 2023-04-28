@@ -6,9 +6,9 @@ create_test_sourcelist(
   JSONTests.c
   Parse.c
   DeserializeFromTemplate.c
+  EqualsParse.c
 )
 add_executable(JSONTests MACOSX_BUNDLE ${JSONTests})
-
 # remove the test driver source file
 set (TestsToRun ${StringUtilityTests})
 remove (TestsToRun StringTests.c)
