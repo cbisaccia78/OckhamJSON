@@ -21,8 +21,38 @@ int parseString(char **jsonSubString){
 }
 /*
     UNTESTED
+
+    Numeric values that cannot be represented in the grammar below (such
+    as Infinity and NaN) are not permitted.
+
+      number = [ minus ] int [ frac ] [ exp ]
+
+      decimal-point = %x2E       ; .
+
+      digit1-9 = %x31-39         ; 1-9
+
+      e = %x65 / %x45            ; e E
+
+      exp = e [ minus / plus ] 1*DIGIT
+
+      frac = decimal-point 1*DIGIT
+      
+      int = zero / ( digit1-9 *DIGIT )
+
+      minus = %x2D               ; -
+
+      plus = %x2B                ; +
+
+      zero = %x30                ; 0
 */
-int parseNumber(char **jsonSubString){
+int parseNumber(char **jsonSubString, char type){
+    char c = *(*jsonSubString)++;
+    int negative = c == '-' ? 1 : 0;
+    while((c = *(*jsonSubString)++) != '\0' && c == 48)
+        ;
+    while((c = *(*jsonSubString)++) != '\0' && c > 47 && c < 58){
+        
+    }
     return 0;
 }
 
@@ -43,7 +73,7 @@ int parseSingleton(char **jsonSubString){
         case 't':
             return equalsParse(jsonSubString, "rue", 3);
         case '"':
-            return parseString(jsonSubString);
+            return !(parseUntilControlCharacter(jsonSubString, '"') > 0);
         default:
             return parseNumber(jsonSubString);
     }
