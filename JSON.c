@@ -49,6 +49,7 @@ int parseNumber(char **jsonSubString, char type){
     int i = 0;
     char c = *(*jsonSubString)++;
     int negative = c == '-' ? 1 : 0;
+    printf("%d\n", negative);
     while((c = *(*jsonSubString)++) != '\0' && c == ZERO){
         i++;
     }
@@ -64,6 +65,7 @@ int parseNumber(char **jsonSubString, char type){
     }
     //by this point we know type should be a float
     int frac = c == DECIMALPOINT ? 1 : 0;
+    printf("%d\n", frac);
     while((c = *(*jsonSubString)++) != '\0' && c >= ZERO && c < NINE){
         i++;
     }
@@ -72,6 +74,7 @@ int parseNumber(char **jsonSubString, char type){
     }
 
     int eNegative = 0;
+    printf("%d\n", eNegative);
     if((c = *(++(*jsonSubString))) == MINUS || c == PLUS){
         eNegative = c == MINUS;
     }else{
