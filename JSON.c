@@ -4,12 +4,12 @@
 #include "JSON.h"
 #include "StringUtils.h"
 /*
-    UNTESTED
+    TESTED
 */
 int equalsParse(char **jsonSubString, char *string, int length){
     int i = 0;
-    while(**jsonSubString == string[i] && (i++ < length))
-        jsonSubString++;
+    while(i < length && *(*jsonSubString)++ == string[i++])
+        ;
     return i == length;
 }
 
