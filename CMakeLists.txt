@@ -1,8 +1,12 @@
+
+
 cmake_minimum_required(VERSION 3.26)
 
 set(CMAKE_TRY_COMPILE_TARGET_TYPE "STATIC_LIBRARY")
 
 project( OckhamJSON VERSION 0.0.0.0 DESCRIPTION "Parser/Generator of RFC JSON in C" HOMEPAGE_URL "https://gitlab.com/StringUtilities6655811/OckhamJSON" LANGUAGES C)
+
+include(CTest)
 
 configure_file(JSON.h.in JSON.h)
 
@@ -16,7 +20,7 @@ add_subdirectory(StringUtilities)
 add_subdirectory(Tests)
 target_link_libraries(example PUBLIC stringutils)
 
-include(CTest)
+
 enable_testing()
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Werror -Werror=strict-prototypes")
