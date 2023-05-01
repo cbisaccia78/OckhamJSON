@@ -59,6 +59,7 @@ typedef struct Storage Storage;
 
 void deserializeFromTemplate(char **jsonText, char **templateTExt, Storage *s);
 
+int equalsParse(char **jsonSubString, char *string, int length);
 int parseString(char **jsonSubString);
 int parseNumber(char **jsonSubString);
 int parseKeyName(char **jsonSubString, char **templateSubString);
