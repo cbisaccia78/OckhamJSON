@@ -7,6 +7,7 @@ create_test_sourcelist(
   Equals.c
   Contains.c
   StripLeadingWhiteSpace.c
+  ParseUntilControlCharacter.c
   StripUntilControlCharacter.c
   StripWSUntilControlCharacter.c
   GetLine.c
