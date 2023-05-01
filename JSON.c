@@ -46,13 +46,47 @@ int parseString(char **jsonSubString){
       zero = %x30                ; 0
 */
 int parseNumber(char **jsonSubString, char type){
+    int i = 0;
     char c = *(*jsonSubString)++;
     int negative = c == '-' ? 1 : 0;
-    while((c = *(*jsonSubString)++) != '\0' && c == 48)
-        ;
-    while((c = *(*jsonSubString)++) != '\0' && c > 47 && c < 58){
-        
+    while((c = *(*jsonSubString)++) != '\0' && c == ZERO){
+        i++;
     }
+    while((c = *(*jsonSubString)++) != '\0' && c >= ZERO && c < NINE){
+        i++;
+    }
+
+    if(type == 'i'){
+        if(c == VALUE_SEPARATOR || c == END_ARRAY || c == END_OBJECT)
+            return i;
+        else
+            return -1;
+    }
+    //by this point we know type should be a float
+    int frac = c == DECIMALPOINT ? 1 : 0;
+    while((c = *(*jsonSubString)++) != '\0' && c >= ZERO && c < NINE){
+        i++;
+    }
+    if(c == VALUE_SEPARATOR || c == END_ARRAY || c == END_OBJECT || c != 'e'){
+        return i;
+    }
+
+    int eNegative = 0;
+    if((c = *(++(*jsonSubString))) == MINUS || c == PLUS){
+        eNegative = c == MINUS;
+    }else{
+        if(c == VALUE_SEPARATOR || c == END_ARRAY || c == END_OBJECT){
+            return -1;
+        }
+        if(c < ZERO || c > NINE)
+            return -1;
+        //c is a digit
+    }
+    i++;
+    while((c = *(++(*jsonSubString))) != '\0' && c >= ZERO && c < NINE){
+        i++;
+    }
+    
     return 0;
 }
 
@@ -75,7 +109,7 @@ int parseSingleton(char **jsonSubString){
         case '"':
             return !(parseUntilControlCharacter(jsonSubString, '"') > 0);
         default:
-            return parseNumber(jsonSubString);
+            return parseNumber(jsonSubString, 'i'); //currently hardcoded, need templtae
     }
 }
 
