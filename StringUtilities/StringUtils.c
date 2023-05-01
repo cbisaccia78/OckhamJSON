@@ -60,6 +60,13 @@ int stripLeadingWhiteSpace(char **str){
 }
 
 /*
+    UNTESTED
+*/
+int parseUntilControlCharacter(char **jsonSubString, char controlChar){
+    return 0;
+}
+
+/*
     Untested
 */
 int stripUntilControlCharacter(char **str, char controlCharacter){
