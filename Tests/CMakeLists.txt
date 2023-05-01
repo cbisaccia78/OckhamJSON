@@ -6,6 +6,13 @@ create_test_sourcelist(
   ParseNumber.c
 )
 add_executable(JSONTests MACOSX_BUNDLE ${JSONTests})
+target_include_directories(JSONTests PUBLIC 
+                           "${PROJECT_BINARY_DIR}"
+                           "${PROJECT_SOURCE_DIR}")
+
+target_include_directories(JSONTests PUBLIC 
+"${PROJECT_BINARY_DIR}"
+"${PROJECT_SOURCE_DIR}/StringUtilities")  
 # remove the test driver source file
 set (TestsToRun ${JSONTests})
 remove (TestsToRun JSONTests.c)

@@ -11,7 +11,6 @@ include(CTest)
 configure_file(JSON.h.in JSON.h)
 
 add_executable(example MACOSX_BUNDLE example.c JSON.c)
-
 target_include_directories(example PUBLIC 
                            "${PROJECT_BINARY_DIR}"
                            "${PROJECT_SOURCE_DIR}/StringUtilities")                           
