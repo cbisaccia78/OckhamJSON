@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "JSON.h" //this is machine dependent, need a better solution
+#include "JSONUtils.h"
 
 int ParseNumber(int argc, char **argv){
     char *intNum = "1234";
