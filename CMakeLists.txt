@@ -20,15 +20,12 @@ target_link_libraries(example PUBLIC stringutils jsonutils)
                            #"${PROJECT_SOURCE_DIR}/StringUtilities"
                            #"${PROJECT_SOURCE_DIR}/JSONUtilities")
 include_directories("${PROJECT_BINARY_DIR}"
-                    "${PROJECT_SOURCE_DIR}/StringUtilities"
-                    "${PROJECT_SOURCE_DIR}/JSONUtilities")
-add_subdirectory(StringUtilities)
-add_subdirectory(JSONUtilities)
+                    "${PROJECT_SOURCE_DIR}/src")
+add_subdirectory(src)
 
 
 enable_testing()
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Werror -Werror=strict-prototypes")
 
-#add_subdirectory(Examples)
 

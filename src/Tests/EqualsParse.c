@@ -1,12 +1,5 @@
 #include <stdio.h>
-
-
-int equalsParse(char **jsonSubString, char *string, int length){
-    int i = 0;
-    while(i < length && *(*jsonSubString)++ == string[i++])
-        ;
-    return i == length;
-}
+#include "JSONUtils.h"
 
 int EqualsParse(int argc, char **argv){
     char *jsonText = "nulltruefalse";

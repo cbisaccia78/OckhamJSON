@@ -38,9 +38,10 @@ int contains(char **strArray, char *str, int length){
 */
 int copy(char str[], char buffer[], int length){
     char c;
-    for(int i = 0; i < length && !(c = '\0'); buffer[i] = str[i++])
-        ;
-    
+    int i;
+    for(i = 0; i < length && !(c = '\0'); i++)
+        buffer[i] = str[i];
+    return i;
 }
 
 /*
