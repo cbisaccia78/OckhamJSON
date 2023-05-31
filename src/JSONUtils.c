@@ -47,16 +47,23 @@ int parseString(char **jsonSubString){
       zero = %x30                ; 0
 */
 int parseNumber(char **jsonSubString, char type){
+    //"1234"
     int i = 0;
-    char c = *(*jsonSubString)++;
+    char c = **jsonSubString;
     int negative = c == '-' ? 1 : 0;
-    printf("%d\n", negative);
-    while((c = *(*jsonSubString)++) != '\0' && c == ZERO){
+    if(negative){
         i++;
     }
-    while((c = *(*jsonSubString)++) != '\0' && c >= ZERO && c < NINE){
+
+    while((c = (*jsonSubString)[i]) != '\0' && c == ZERO){
         i++;
     }
+    if(c == '\0') return -1; // either "-" or "-0[0]", valid JSON? 
+
+    while((c = (*jsonSubString)[i]) != '\0' && c >= ZERO && c < NINE){
+        i++;
+    }
+    if(c == '\0') return -1; // either "-" or "-0[0]", valid JSON? 
 
     if(type == 'i'){
         if(c == VALUE_SEPARATOR || c == END_ARRAY || c == END_OBJECT)
@@ -66,17 +73,20 @@ int parseNumber(char **jsonSubString, char type){
     }
     //by this point we know type should be a float
     int frac = c == DECIMALPOINT ? 1 : 0;
-    printf("%d\n", frac);
-    while((c = *(*jsonSubString)++) != '\0' && c >= ZERO && c < NINE){
+    if(!frac) return -1;
+    i++;
+    while((c = (*jsonSubString)[i]) != '\0' && c >= ZERO && c < NINE){
         i++;
     }
-    if(c == VALUE_SEPARATOR || c == END_ARRAY || c == END_OBJECT || c != 'e'){
+    if(c == VALUE_SEPARATOR || c == END_ARRAY || c == END_OBJECT){
         return i;
+    }else if (c != 'e'){
+        return -1;
     }
 
     int eNegative = 0;
-    printf("%d\n", eNegative);
-    if((c = *(++(*jsonSubString))) == MINUS || c == PLUS){
+    if((c = (*jsonSubString)[i]) != '\0' && (c == MINUS || c == PLUS)){
+        i++;
         eNegative = c == MINUS;
     }else{
         if(c == VALUE_SEPARATOR || c == END_ARRAY || c == END_OBJECT){
